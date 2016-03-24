@@ -10,17 +10,17 @@ namespace LemonadeStand
     {
         public void test()
         {
-            
-            buySupplies run1 = new buySupplies();
-            run1.storeFront();
-            Console.ReadLine();
 
 
 
 
+            //STOREFRONT
+            //double ownerBalance = 20;
+            //buySupplies run1 = new buySupplies();
+            //run1.storeFront(ownerBalance);
+            //Console.ReadLine();
 
-
-
+            //WEATHER SIM
             //weatherSim run = new weatherSim();
             //int cust = run.weatherReport();
             //Console.WriteLine(cust);
