@@ -8,7 +8,6 @@ namespace LemonadeStand
 {
     public class weatherSim
     {
-        double weatherRand = 0;
         public weatherSim()
         {
 

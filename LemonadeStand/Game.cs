@@ -20,7 +20,6 @@ namespace LemonadeStand
             //run1.storeFront(ownerBalance);
             //Console.ReadLine();
 
-          
             weatherSim run = new weatherSim();
             double forecast = run.weatherReport();
             Console.WriteLine(forecast);
@@ -28,6 +27,19 @@ namespace LemonadeStand
 
             day startTheLoop = new day();
             startTheLoop.newDay(forecast);
-        }        
+
+            customer run1 = new customer();
+            run1.makeNewCustomers();
+
+
+            for (int i = 0; i < 50; i++)
+            {
+                run1.listStuff(i);
+                startTheLoop.iterateList(i);
+                Console.WriteLine();
+            }
+
+            Console.ReadLine();
+          }        
     }
 }
