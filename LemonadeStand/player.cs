@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace LemonadeStand
 {
+    
     public class player
     {
         public double money = 20;
@@ -16,9 +17,37 @@ namespace LemonadeStand
         {
             
         }
-        public void user()
-        {
-
+        public double user(double forecast)
+        {               
+            double aCustomer;
+            Random customers = new Random();
+            
+                if (forecast.Equals(1))
+                {
+                    aCustomer = customers.Next(1, 75);
+                    return aCustomer;
+                }
+                else if (forecast.Equals(2))
+                {
+                    aCustomer = customers.Next(10, 80);
+                    return aCustomer;
+                }
+                else if (forecast.Equals(3))
+                {
+                    aCustomer = customers.Next(20, 70);
+                    return aCustomer;
+                }
+                else if (forecast.Equals(4))
+                {
+                    aCustomer = customers.Next(40, 85);
+                    return aCustomer;
+                }
+                else if (forecast.Equals(5))
+                {
+                    aCustomer = customers.Next(40, 101);
+                    return aCustomer;
+                }
+                return 0;
         }
     }
 }

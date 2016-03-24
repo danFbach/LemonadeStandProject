@@ -8,7 +8,7 @@ namespace LemonadeStand
 {
     public class buySupplies 
     {
-        player user = new player( 0, 0, 0, 0);
+        player user = new player(0, 0, 0, 0);
 
         double lemonPack = 60;
         double lemonPackPrice = 2.50;

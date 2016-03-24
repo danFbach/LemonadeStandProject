@@ -6,44 +6,42 @@ using System.Threading.Tasks;
 
 namespace LemonadeStand
 {
-    class weatherSim
+    public class weatherSim
     {
-        public int weatherReport()
+        double weatherRand = 0;
+        public weatherSim()
+        {
+
+        }
+        public double weatherReport()
         {
             Random forecast = new Random();
-            Random customers = new Random();
-            int aDayCustomers = 0;
-            int weatherNum = forecast.Next(1,6);
+            int weatherRand = forecast.Next(1,6);
 
-            if (weatherNum.Equals(1))
+            if (weatherRand.Equals(1))
             {
                 Console.WriteLine("Today is going to be cold and there will be thunderstorms, a very poor day to be a lemonade stand entrepenuer.");
-                aDayCustomers = customers.Next(1,30);
-                return aDayCustomers;
+                return weatherRand;
             }
-            else if (weatherNum.Equals(2))
+            else if (weatherRand.Equals(2))
             {
                 Console.WriteLine("The weather will be cool and and drizzling rain. You'll probably get a few customers today.");
-                aDayCustomers = customers.Next(10,30);
-                return aDayCustomers;
+                return weatherRand;
             }
-            else if (weatherNum.Equals(3))
+            else if (weatherRand.Equals(3))
             {
                 Console.WriteLine("Its warm, but hazy. A decent number of people should buy some today.");
-                aDayCustomers = customers.Next(20,60);
-                return aDayCustomers;
+                return weatherRand;
             }
-            else if (weatherNum.Equals(4))
+            else if (weatherRand.Equals(4))
             {
                 Console.WriteLine("It's 70 to 80 degrees out today and it's partly cloudy. Should be a good day!");
-                aDayCustomers = customers.Next(45,75);
-                return aDayCustomers;
+                return weatherRand;
             }
-            else if (weatherNum.Equals(5))
+            else if (weatherRand.Equals(5))
             {
                 Console.WriteLine("90 and not a cloud in the sky! better stock up on supplies!");
-                aDayCustomers = customers.Next(60,90);
-                return aDayCustomers;
+                return weatherRand;
             }return 0;
         }
     }

@@ -21,7 +21,7 @@ namespace LemonadeStand
                     //  * A weather system that includes a forecast and actual weather.For example, this could mean a predicted forecast for a day or week and then what the actual weather is on the given day. 
                     //  * Price of product should affect demand. For example, if the price is too high, sales will decrease.
                     //  * Weather should affect demand. For example, if it is sunny and 90 degrees, sales would likely skyrocket. 
-                    //  *Each customer should be a separate object with its own chance of buying a glass of lemonade.This means how much lemonade is purchased and how much they are willing to pay will vary from customer to customer.
+                    //  * Each customer should be a separate object with its own chance of buying a glass of lemonade. This means how much lemonade is purchased and how much they are willing to pay will vary from customer to customer.
                     //  * Game must be a minimum of seven days
                     //  * Bonus Points: Persistent data (file reading/writing) to keep track of game data. For example, how much lemonade is sold and how much profit is made on each day. This will be written and read from a text file.
 

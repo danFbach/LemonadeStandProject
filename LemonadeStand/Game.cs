@@ -20,12 +20,14 @@ namespace LemonadeStand
             //run1.storeFront(ownerBalance);
             //Console.ReadLine();
 
-            //WEATHER SIM
-            //weatherSim run = new weatherSim();
-            //int cust = run.weatherReport();
-            //Console.WriteLine(cust);
-            //Console.ReadLine();
-        }
-        
+          
+            weatherSim run = new weatherSim();
+            double forecast = run.weatherReport();
+            Console.WriteLine(forecast);
+            Console.ReadLine();
+
+            day startTheLoop = new day();
+            startTheLoop.newDay(forecast);
+        }        
     }
 }
