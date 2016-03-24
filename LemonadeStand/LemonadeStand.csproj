@@ -44,6 +44,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="customer.cs" />
+    <Compile Include="customerProbability.cs" />
     <Compile Include="day.cs" />
     <Compile Include="fileReader.cs" />
     <Compile Include="fileWriter.cs" />
@@ -51,9 +52,9 @@
     <Compile Include="player.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="store.cs" />
+    <Compile Include="buySupplies.cs" />
     <Compile Include="userInterface.cs" />
-    <Compile Include="weather.cs" />
+    <Compile Include="weatherSim.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
