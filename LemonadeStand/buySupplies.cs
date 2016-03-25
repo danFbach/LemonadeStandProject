@@ -6,83 +6,113 @@ using System.Threading.Tasks;
 
 namespace LemonadeStand
 {
-    public class buySupplies 
+    public class buySupplies
     {
-        player user = new player(0, 0, 0, 0);
-
-        double lemonPack = 60;
+        
+        double lemonPack = 20;
+        double sugarPack = 16;
+        double icePack = 65;
         double lemonPackPrice = 2.50;
-        double icePack = 75;
-        double icePackPrice = 1.75;
-        double sugarPack = 15;
         double sugarPackPrice = 3.50;
+        double icePackPrice = 1.75;
+        
 
-        public void storeFront()
+        public void storeFront(double lemonCount, double sugarCount, double iceCount, double money)
         {
             Console.WriteLine("Welcome to the lemonade store, we carry everything the lemonade industry might need. Lemons, Sugar and Ice.");
-            buyLemons();
-            buySugar();
-            buyIce();
-            Console.WriteLine("Money: " + user.money + " Lemons: " + user.lemonCount + " Sugar: " + user.sugarCount + " Icecubes: " + user.iceCount);
+            Console.WriteLine("Money: " + money + " Lemons: " + lemonCount + " Sugar: " + sugarCount + " Icecubes: " + iceCount);
         }
         //LEMON STORE
-        public void buyLemons()
+        public double buyLemons(double lemonCount, double money)
         {
+            double lemonPurchase;
             string supplyChoice;
-            Console.WriteLine("You have " + user.lemonCount + " lemons, would you like to buy more? (Y/N)");
+            Console.WriteLine("You have " + lemonCount + " lemons, would you like to buy more? (Y/N)");
             supplyChoice = Console.ReadLine();
             supplyChoice = supplyChoice.ToLower();
             if (supplyChoice.Equals("y"))
             {
-                Console.WriteLine("$" + lemonPackPrice + " for " + lemonPack + " lemons! You currently have $" + user.money +
+                Console.WriteLine("$" + lemonPackPrice + " for " + lemonPack + " lemons! You currently have $" + money +
                     ". Please enter the number of lemon packs you would like to buy.");
-                double lemonPurchase = double.Parse(Console.ReadLine());
-                user.lemonCount = ingredientTotal(lemonPurchase, user.lemonCount, lemonPack);
-                user.money = moneyBalanceAdjustment(user.money, lemonPurchase, lemonPackPrice);
+                lemonPurchase = double.Parse(Console.ReadLine());
+                return lemonPurchase;
             }
+            return 0;
         }
-        //ICE STORE 
-        public void buyIce()
+        public double buyIce(double iceCount, double money)
         {
+            double icePurchase;
             string supplyChoice;
-            Console.WriteLine("You have " + user.iceCount + " icecubes, would you like to buy more? (Y/N)");
+            Console.WriteLine("You have " + iceCount + " ice cubes, would you like to buy more? (Y/N)");
             supplyChoice = Console.ReadLine();
             supplyChoice = supplyChoice.ToLower();
             if (supplyChoice.Equals("y"))
             {
-                Console.WriteLine("$" + icePackPrice + " for " + icePack + " icecubes! You currently have $" + user.money +
-                ". Please enter the number of ice packs you would like to buy.");
-                double icePurchase = double.Parse(Console.ReadLine());
-                user.iceCount = ingredientTotal(icePurchase, user.iceCount, icePack);
-                user.money = moneyBalanceAdjustment(user.money, icePurchase, icePackPrice);
+                Console.WriteLine("$" + icePackPrice + " for " + icePack + " ice cubes! You currently have $" + money +
+                    ". Please enter the number of lemon packs you would like to buy.");
+                icePurchase = double.Parse(Console.ReadLine());
+                return icePurchase;
             }
+            return 0;
         }
-        //SUGAR STORE        
-        public void buySugar()
+        public double buySugar(double sugarCount, double money)
         {
+            double sugarPurchase;
             string supplyChoice;
-            Console.WriteLine("You have " + user.sugarCount + " cups of sugar, would you like to buy more? (Y/N)");
+            Console.WriteLine("You have " + sugarCount + " cups of sugar, would you like to buy more? (Y/N)");
             supplyChoice = Console.ReadLine();
             supplyChoice = supplyChoice.ToLower();
             if (supplyChoice.Equals("y"))
             {
-                Console.WriteLine("$" + sugarPackPrice + " for " + sugarPack + " sugarpackets! You currently have $" + user.money +
-                ". Please enter the number of sugar packs you would like to buy.");
-                double sugarPurchase = double.Parse(Console.ReadLine());
-                user.sugarCount = ingredientTotal(sugarPurchase, user.sugarCount, sugarPack);
-                user.money = moneyBalanceAdjustment(user.money, sugarPurchase, sugarPackPrice);
+                Console.WriteLine("$" + sugarPackPrice + " for " + sugarPack + " cups of sugar! You currently have $" + money +
+                    ". Please enter the number of lemon packs you would like to buy.");
+                sugarPurchase = double.Parse(Console.ReadLine());
+                return sugarPurchase;
             }
-        }
-        public double ingredientTotal(double numberPurchased, double productCount, double itemsPerPack)
+            return 0;
+        }        
+        //ingredient calc
+        public double ingredientTotal(double numberPurchased, double productCount, string type)
         {
-            productCount += (numberPurchased * itemsPerPack);
-            return productCount;
+            if (type.Equals("lemons"))
+            {
+                double itemsPerPack = 20;
+                productCount += (numberPurchased * itemsPerPack);
+                return productCount;
+            }else if (type.Equals("sugar"))
+            {
+                double itemsPerPack = 16;
+                productCount += (numberPurchased * itemsPerPack);
+                return productCount;
+            }
+            else if (type.Equals("ice"))
+            {
+                double itemsPerPack = 65;
+                productCount += (numberPurchased * itemsPerPack);
+                return productCount;
+            }return productCount;
+
+
         }
-        public double moneyBalanceAdjustment(double userBalance, double itemPurchased, double perQtyPrice)
+        //money calc
+        public double moneyBalanceAdjustment(double userBalance, double numberPurchased, string itemPurchased)
         {
-            
-            userBalance -= (itemPurchased * perQtyPrice);
-            return userBalance;
+            if (itemPurchased.Equals("lemons"))
+            {
+                double pricePerQty = 2.50;
+                userBalance -= (numberPurchased * pricePerQty);
+                return userBalance;
+            }else if (itemPurchased.Equals("sugar"))
+            {
+                double pricePerQty = 3;
+                userBalance -= (numberPurchased * pricePerQty);
+                return userBalance;
+            }else if (itemPurchased.Equals("ice"))
+            {
+                double pricePerQty = 1.50;
+                userBalance -= (numberPurchased * pricePerQty);
+                return userBalance;
+            }return userBalance;
         }
     }
 }

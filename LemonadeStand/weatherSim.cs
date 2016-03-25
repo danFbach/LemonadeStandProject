@@ -10,7 +10,6 @@ namespace LemonadeStand
     {
         public double weatherRand = 0;
         public List<int> dailyWeather = new List<int>();
-
         public void largeScaleWeather(int dayLimit)
         {
             Random forecast = new Random();
@@ -18,46 +17,43 @@ namespace LemonadeStand
             {
                 dailyWeather.Add(forecast.Next(1, 6));
             }
-
         }
-
         public double weatherReport(int currentDay)
         {
             double aCustomer;
             Random customers = new Random();
             int weatherRand;
             weatherRand = dailyWeather[currentDay];
-                if (weatherRand.Equals(1))
-                {
-                    Console.WriteLine("Today is going to be cold and there will be thunderstorms, a very poor day to be a lemonade stand entrepenuer.");
-                    aCustomer = customers.Next(1, 75);
-                    return aCustomer;
-                }
-                else if (weatherRand.Equals(2))
-                {
-                    Console.WriteLine("The weather will be cool and and drizzling rain. You'll probably get a few customers today.");
-                    aCustomer = customers.Next(10, 80);
-                    return aCustomer;
-                }
-                else if (weatherRand.Equals(3))
-                {
-                    Console.WriteLine("Its warm, but hazy. A decent number of people should buy some today.");
-                    aCustomer = customers.Next(20, 80);
-                    return aCustomer;
-                }
-                else if (weatherRand.Equals(4))
-                {
-                    Console.WriteLine("It's 70 to 80 degrees out today and it's partly cloudy. Should be a good day!");
-                    aCustomer = customers.Next(40, 85);
-                    return aCustomer;
-                }
-                else if (weatherRand.Equals(5))
-                {
-                    Console.WriteLine("90 and not a cloud in the sky! better stock up on supplies!");
-                    aCustomer = customers.Next(40, 101);
-                    return aCustomer;
-                }
-                return 0;            
+            if (weatherRand.Equals(1))
+            {
+                Console.WriteLine("Today is going to be cold and there will be thunderstorms, a very poor day to be a lemonade stand entrepenuer.");
+                aCustomer = customers.Next(1, 75);
+                return aCustomer;
+            }
+            else if (weatherRand.Equals(2))
+            {
+                Console.WriteLine("The weather will be cool and and drizzling rain. You'll probably get a few customers today.");
+                aCustomer = customers.Next(10, 80);
+                return aCustomer;
+            }
+            else if (weatherRand.Equals(3))
+            {
+                Console.WriteLine("Its warm, but hazy. A decent number of people should buy some today.");
+                aCustomer = customers.Next(20, 80);
+                return aCustomer;
+            }
+            else if (weatherRand.Equals(4))
+            {
+                Console.WriteLine("It's 70 to 80 degrees out today and it's partly cloudy. Should be a good day!");
+                aCustomer = customers.Next(40, 85);
+                return aCustomer;
+            }
+            else if (weatherRand.Equals(5))
+            {
+                Console.WriteLine("90 and not a cloud in the sky! better stock up on supplies!");
+                aCustomer = customers.Next(40, 101);
+                return aCustomer;
+            }return 0;            
         }
     }
 }
