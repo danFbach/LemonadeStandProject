@@ -12,13 +12,17 @@ namespace LemonadeStand
         {
 
             mainMenu startGame = new mainMenu();
+            buySupplies purchaseSupplies = new buySupplies();
             int dayLimiter = startGame.pickDayLimit();
 
             weatherSim simulateWeather = new weatherSim();
             simulateWeather.largeScaleWeather(dayLimiter);
 
             for (int currentDay = 0;currentDay < dayLimiter;currentDay++)
-            {
+            {                
+                purchaseSupplies.storeFront();
+                Console.ReadLine();
+
                 double QtyOfPotentialCustomers = simulateWeather.weatherReport(currentDay);
                 Console.WriteLine(QtyOfPotentialCustomers + " should be number of customers, presss enter.");
                 Console.ReadLine();
@@ -29,15 +33,12 @@ namespace LemonadeStand
                 Console.ReadKey();
             }
 
-            
 
-            
+
+
 
             //STOREFRONT
-            //double ownerBalance = 20;
-            //buySupplies run1 = new buySupplies();
-            //run1.storeFront(ownerBalance);
-            //Console.ReadLine();
+
         }
     }
 }
