@@ -2,38 +2,30 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Threading;
+using System.Threading.Tasks;
 
 namespace LemonadeStand
 {
-    public class day
+    class day
     {
-        int dayTimeLimit = 50;
-        public List<string> thirsty = new List<string>();
-
         public void newDay(double forecast)
         {
-
             player run = new player(0, 0, 0, 0);
-            for (int customerNum = 0; customerNum < dayTimeLimit; customerNum++)
+            for (int i = 0; i < 50; i++)
             {
                 double customerThirst = run.user(forecast);
+
                 if (customerThirst < 50)
                 {
-                    thirsty.Add("don't buy");
+                    //they dont buy
+                    Console.WriteLine("dont buy");
                 }
                 else if (customerThirst > 50)
                 {
-                    thirsty.Add("buy");
-                } Thread.Sleep(100);
-
+                    Console.WriteLine("buy");
+                    //they buy lemonade
+                }Console.ReadLine();
             }
         }
-            public void iterateList(int i)
-        {
-            Console.Write("   " + thirsty[i]);
-        }   
     }
 }
-
-
