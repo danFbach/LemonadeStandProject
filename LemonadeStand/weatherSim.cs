@@ -8,67 +8,56 @@ namespace LemonadeStand
 {
     public class weatherSim
     {
-        double weatherRand = 0;
-        public weatherSim()
-        {
+        public double weatherRand = 0;
+        public List<int> dailyWeather = new List<int>();
 
-        }
-        public double weatherReport()
+        public void largeScaleWeather(int dayLimit)
         {
             Random forecast = new Random();
-            int weatherRand = forecast.Next(1,6);
+            for (int days = 0; days < dayLimit; days++)
+            {
+                dailyWeather.Add(forecast.Next(1, 6));
+            }
 
-            if (weatherRand.Equals(1))
-            {
-                Console.WriteLine("Today is going to be cold and there will be thunderstorms, a very poor day to be a lemonade stand entrepenuer.");
-                return weatherRand;
-            }
-            else if (weatherRand.Equals(2))
-            {
-                Console.WriteLine("The weather will be cool and and drizzling rain. You'll probably get a few customers today.");
-                return weatherRand;
-            }
-            else if (weatherRand.Equals(3))
-            {
-                Console.WriteLine("Its warm, but hazy. A decent number of people should buy some today.");
-                return weatherRand;
-            }
-            else if (weatherRand.Equals(4))
-            {
-                Console.WriteLine("It's 70 to 80 degrees out today and it's partly cloudy. Should be a good day!");
-                return weatherRand;
-            }
-            else if (weatherRand.Equals(5))
-            {
-                Console.WriteLine("90 and not a cloud in the sky! better stock up on supplies!");
-                return weatherRand;
-            }return 0;
+        }
+
+        public double weatherReport(int currentDay)
+        {
+            double aCustomer;
+            Random customers = new Random();
+            int weatherRand;
+            weatherRand = dailyWeather[currentDay];
+                if (weatherRand.Equals(1))
+                {
+                    Console.WriteLine("Today is going to be cold and there will be thunderstorms, a very poor day to be a lemonade stand entrepenuer.");
+                    aCustomer = customers.Next(1, 75);
+                    return aCustomer;
+                }
+                else if (weatherRand.Equals(2))
+                {
+                    Console.WriteLine("The weather will be cool and and drizzling rain. You'll probably get a few customers today.");
+                    aCustomer = customers.Next(10, 80);
+                    return aCustomer;
+                }
+                else if (weatherRand.Equals(3))
+                {
+                    Console.WriteLine("Its warm, but hazy. A decent number of people should buy some today.");
+                    aCustomer = customers.Next(20, 80);
+                    return aCustomer;
+                }
+                else if (weatherRand.Equals(4))
+                {
+                    Console.WriteLine("It's 70 to 80 degrees out today and it's partly cloudy. Should be a good day!");
+                    aCustomer = customers.Next(40, 85);
+                    return aCustomer;
+                }
+                else if (weatherRand.Equals(5))
+                {
+                    Console.WriteLine("90 and not a cloud in the sky! better stock up on supplies!");
+                    aCustomer = customers.Next(40, 101);
+                    return aCustomer;
+                }
+                return 0;            
         }
     }
 }
-//public int weatherRandom(Random digit2)
-//{
-//    int randForecast = 0;
-//    randForecast = digit2.Next(1,5);
-//    switch(randForecast)
-//    {
-//        case (1)://cool thunderstorms - fewest customers
-//        return randForecast;
-//        case (2)://cool rainy - fewer customers
-//        return randForecast;
-//        case (3)://warm partly cloudy - some customers
-//        return randForecast;
-//        case (4)://warm sunny - more customers
-//        return randForecast;
-//        case (5)://hot sunny - most customers
-//        return randForecast;
-//        default:
-//        return randForecast;
-//    }
-
-
-
-
-
-
-

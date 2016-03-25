@@ -2,29 +2,31 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
+using System.Threading;
 
 namespace LemonadeStand
 {
-    class day
+    public class day
     {
-        public void newDay(double forecast)
+        public List<customer> potentialCustomers = new List<customer>();
+        public Random cashClass = new Random();
+        
+        public List<customer> makeNewCustomers(double customerLimit)
         {
-            player run = new player(0, 0, 0, 0);
-            for (int i = 0; i < 50; i++)
+            for (int customerNum = 0; customerNum < customerLimit; customerNum++)
             {
-                double customerThirst = run.user(forecast);
-
-                if (customerThirst < 50)
-                {
-                    //they dont buy
-                    Console.WriteLine("dont buy");
-                }
-                else if (customerThirst > 50)
-                {
-                    Console.WriteLine("buy");
-                    //they buy lemonade
-                }Console.ReadLine();
+                potentialCustomers.Add(new customer(cashClass.Next(1, 5)));
+                Thread.Sleep(10);
+            }
+            Console.Write("number of customers " + potentialCustomers.Count);
+            Console.ReadLine();
+            return potentialCustomers;
+        }
+        public void displayCustomers()
+        {
+            foreach(customer person in potentialCustomers)
+            {
+                Console.WriteLine(person.customerName + "'s cash class is " + person.cashClass);
             }
         }
     }

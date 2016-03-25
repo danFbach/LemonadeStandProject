@@ -48,6 +48,7 @@
     <Compile Include="fileReader.cs" />
     <Compile Include="fileWriter.cs" />
     <Compile Include="Game.cs" />
+    <Compile Include="mainMenu.cs" />
     <Compile Include="player.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

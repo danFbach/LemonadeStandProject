@@ -18,7 +18,7 @@ namespace LemonadeStand
 }
                     //Lemonade Stand Project
                     //  * Basic Lemonade Stand gameplay must be present(play a lemonade stand online for a bit to get familiar with the gameplay). 
-                    //  * A weather system that includes a forecast and actual weather.For example, this could mean a predicted forecast for a day or week and then what the actual weather is on the given day. 
+                    /*  * A weather system that includes a forecast and actual weather. For example, this could mean a predicted forecast for a day or week and then what the actual weather is on the given day. */
                     //  * Price of product should affect demand. For example, if the price is too high, sales will decrease.
                     //  * Weather should affect demand. For example, if it is sunny and 90 degrees, sales would likely skyrocket. 
                     //  * Each customer should be a separate object with its own chance of buying a glass of lemonade. This means how much lemonade is purchased and how much they are willing to pay will vary from customer to customer.
