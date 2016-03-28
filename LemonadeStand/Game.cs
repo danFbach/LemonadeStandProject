@@ -11,7 +11,7 @@ namespace LemonadeStand
         player stats = new player();
         public void test()
         {
-            fileWriter save = new fileWriter(0,0,0,0);
+            fileWriter save = new fileWriter(0, 0, 0, 0);
             mainMenu startGame = new mainMenu();
             buySupplies purchaseSupplies = new buySupplies();
             weatherSim simulateWeather = new weatherSim();
@@ -27,22 +27,22 @@ namespace LemonadeStand
 
             simulateWeather.largeScaleWeather(dayLimiter);
 
-            for (int currentDay = 0;currentDay < dayLimiter;currentDay++)
+            for (int currentDay = 0; currentDay < dayLimiter; currentDay++)
             {
-                
+
                 double dailyProfit = 0;
                 double tempMoney = money;
                 //daily weather
                 double QtyOfPotentialCustomers = simulateWeather.weatherReport(currentDay);
                 purchaseSupplies.storeFront(lemons, sugar, icecubes, money);
                 //store
-                double lemonPurchase = purchaseSupplies.buyLemons(lemons,money);
+                double lemonPurchase = purchaseSupplies.buyLemons(lemons, money);
                 lemons = purchaseSupplies.ingredientTotal(lemonPurchase, lemons, "lemons");
-                money = purchaseSupplies.moneyBalanceAdjustment(money,lemonPurchase,"lemons");
-                double sugarPurchase = purchaseSupplies.buySugar(sugar,money);
+                money = purchaseSupplies.moneyBalanceAdjustment(money, lemonPurchase, "lemons");
+                double sugarPurchase = purchaseSupplies.buySugar(sugar, money);
                 sugar = purchaseSupplies.ingredientTotal(sugarPurchase, sugar, "sugar");
                 money = purchaseSupplies.moneyBalanceAdjustment(money, sugarPurchase, "sugar");
-                double icePurchase = purchaseSupplies.buyIce(icecubes,money);
+                double icePurchase = purchaseSupplies.buyIce(icecubes, money);
                 icecubes = purchaseSupplies.ingredientTotal(icePurchase, icecubes, "ice");
                 money = purchaseSupplies.moneyBalanceAdjustment(money, sugarPurchase, "ice");
                 Console.WriteLine("You have " + money.ToString("C2") + ", " + lemons + " lemons, " + sugar + " cups of sugar and " + icecubes + " ice cubes.");
@@ -55,10 +55,10 @@ namespace LemonadeStand
                 cupPrice = startTheDay.pricePerCup();
                 startTheDay.makeNewCustomers(QtyOfPotentialCustomers);
                 //return money made
-                dailyIncome = startTheDay.daySim(pitcherQty,cupPrice);
+                dailyIncome = startTheDay.daySim(pitcherQty, cupPrice);
                 money += dailyIncome;
                 dailyProfit = money - tempMoney;
-                save.saveStats(dailyIncome,money,dailyProfit, currentDay);
+                save.saveStats(dailyIncome, money, dailyProfit, currentDay);
                 icecubes = 0;
                 Console.WriteLine("You have " + money.ToString("C2") + ", " + lemons + " lemons, " + sugar + " cups of sugar and " + icecubes + " ice cubes because they melted.");
             }

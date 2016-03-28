@@ -45,7 +45,6 @@
   <ItemGroup>
     <Compile Include="customer.cs" />
     <Compile Include="day.cs" />
-    <Compile Include="fileReader.cs" />
     <Compile Include="fileWriter.cs" />
     <Compile Include="Game.cs" />
     <Compile Include="lemonadePitchers.cs" />

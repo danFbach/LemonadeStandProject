@@ -8,14 +8,14 @@ namespace LemonadeStand
 {
     public class buySupplies
     {
-        
+
         double lemonPack = 20;
         double sugarPack = 16;
         double icePack = 65;
         double lemonPackPrice = 2.50;
         double sugarPackPrice = 3.50;
         double icePackPrice = 1.75;
-        
+
 
         public void storeFront(double lemonCount, double sugarCount, double iceCount, double money)
         {
@@ -70,7 +70,7 @@ namespace LemonadeStand
                 return sugarPurchase;
             }
             return 0;
-        }        
+        }
         //ingredient calc
         public double ingredientTotal(double numberPurchased, double productCount, string type)
         {
@@ -79,7 +79,8 @@ namespace LemonadeStand
                 double itemsPerPack = 20;
                 productCount += (numberPurchased * itemsPerPack);
                 return productCount;
-            }else if (type.Equals("sugar"))
+            }
+            else if (type.Equals("sugar"))
             {
                 double itemsPerPack = 16;
                 productCount += (numberPurchased * itemsPerPack);
@@ -90,7 +91,8 @@ namespace LemonadeStand
                 double itemsPerPack = 65;
                 productCount += (numberPurchased * itemsPerPack);
                 return productCount;
-            }return productCount;
+            }
+            return productCount;
 
 
         }
@@ -102,17 +104,20 @@ namespace LemonadeStand
                 double pricePerQty = 2.50;
                 userBalance -= (numberPurchased * pricePerQty);
                 return userBalance;
-            }else if (itemPurchased.Equals("sugar"))
+            }
+            else if (itemPurchased.Equals("sugar"))
             {
                 double pricePerQty = 3;
                 userBalance -= (numberPurchased * pricePerQty);
                 return userBalance;
-            }else if (itemPurchased.Equals("ice"))
+            }
+            else if (itemPurchased.Equals("ice"))
             {
                 double pricePerQty = 1.50;
                 userBalance -= (numberPurchased * pricePerQty);
                 return userBalance;
-            }return userBalance;
+            }
+            return userBalance;
         }
     }
 }

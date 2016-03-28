@@ -25,7 +25,7 @@ namespace LemonadeStand
         {
             finances.Add(new fileWriter(dailyIncome, moneyTotals, profits, day));
             return finances;
-            
+
         }
         public void displayStats()
         {
@@ -34,5 +34,5 @@ namespace LemonadeStand
                 Console.WriteLine("On day " + stat.day + " you made " + stat.income2.ToString("C2") + ", for a profit of " + stat.dailyProfit.ToString("C2") + ", leaving you with a balance of " + stat.balance2.ToString("C2"));
             }
         }
-    }   
+    }
 }

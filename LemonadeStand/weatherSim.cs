@@ -55,7 +55,8 @@ namespace LemonadeStand
                 Console.WriteLine("90 and not a cloud in the sky! better stock up on supplies!");
                 aCustomer = customers.Next(40, 101);
                 return aCustomer;
-            }return 0;            
+            }
+            return 0;
         }
     }
 }

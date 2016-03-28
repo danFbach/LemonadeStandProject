@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace LemonadeStand
-{    
+{
     public class player
     {
         public double money = 20;
@@ -14,7 +14,7 @@ namespace LemonadeStand
         public double iceCount = 0;
         public player()
         {
-            
-        }        
+
+        }
     }
 }
