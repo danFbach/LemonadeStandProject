@@ -45,6 +45,7 @@
   <ItemGroup>
     <Compile Include="customer.cs" />
     <Compile Include="day.cs" />
+    <Compile Include="fileReader.cs" />
     <Compile Include="fileWriter.cs" />
     <Compile Include="Game.cs" />
     <Compile Include="lemonadePitchers.cs" />
@@ -57,6 +58,11 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="gameStats.csv">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

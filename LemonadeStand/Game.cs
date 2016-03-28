@@ -9,6 +9,7 @@ namespace LemonadeStand
     public class Game
     {
         player stats = new player();
+        
         public void test()
         {
             fileWriter save = new fileWriter(0, 0, 0, 0);
@@ -17,17 +18,34 @@ namespace LemonadeStand
             weatherSim simulateWeather = new weatherSim();
             lemonadePitchers make = new lemonadePitchers();
             day startTheDay = new day();
-            int dayLimiter = startGame.pickDayLimit();
             double lemons = stats.lemonCount;
             double icecubes = stats.iceCount;
             double sugar = stats.sugarCount;
             double money = stats.money;
             double cupPrice;
             double dailyIncome;
+            int dayLimiter = 0;
+            int currentDay = 0;
 
-            simulateWeather.largeScaleWeather(dayLimiter);
+            int selection = startGame.gameSelection();
+            if (selection.Equals(1))
+            {
+                dayLimiter = startGame.pickDayLimit();
+                simulateWeather.largeScaleWeather(dayLimiter);
+            }
+            else if (selection.Equals(2))
+            {
+                fileReader retrieveGameData = new fileReader();
+                retrieveGameData.dataDecoder();
+                lemons = retrieveGameData.getLemons();
+                sugar = retrieveGameData.getSugar();
+                money = retrieveGameData.getTotalMoney();
+                dayLimiter = retrieveGameData.getDayLimit();
+                currentDay = retrieveGameData.getDay();
+                Console.WriteLine("In your loaded game you have " + (dayLimiter-currentDay) + " days remaining, " + lemons + " lemons, " + sugar + " cups of sugar, no ice and " + money.ToString("C2") );
+            }
 
-            for (int currentDay = 0; currentDay < dayLimiter; currentDay++)
+            for (currentDay = 0; currentDay < dayLimiter; currentDay++)
             {
 
                 double dailyProfit = 0;
@@ -58,11 +76,10 @@ namespace LemonadeStand
                 dailyIncome = startTheDay.daySim(pitcherQty, cupPrice);
                 money += dailyIncome;
                 dailyProfit = money - tempMoney;
-                save.saveStats(dailyIncome, money, dailyProfit, currentDay);
+                save.saveStats(dailyIncome, money, dailyProfit, lemons, sugar, currentDay, dayLimiter);
                 icecubes = 0;
                 Console.WriteLine("You have " + money.ToString("C2") + ", " + lemons + " lemons, " + sugar + " cups of sugar and " + icecubes + " ice cubes because they melted.");
-            }
-            save.displayStats();
+            }            
             Console.ReadLine();
         }
     }
