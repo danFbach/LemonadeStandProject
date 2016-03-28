@@ -13,7 +13,7 @@ namespace LemonadeStand
         public Random setCashClass = new Random();
         public Random buyOrNot = new Random();
         public double buyChance;
-
+        
         public List<customer> makeNewCustomers(double customerLimit)
         {  
             for (int customerNum = 0; customerNum < customerLimit; customerNum++)
@@ -27,8 +27,14 @@ namespace LemonadeStand
         {
             double price;
             Console.WriteLine("What would you like your price per cup to be today?");
-            Console.WriteLine("Please enter in 0.00 format. So, 25 cents is .25");
             price = double.Parse(Console.ReadLine());
+            if(price > 1)
+            {
+                price = price / 100;
+            }
+            Console.WriteLine("Great, you will be selling your lemonade for " + price.ToString("C2"));
+            Console.WriteLine("Press enter to begin the day of selling.");
+            Console.ReadKey();
             return price;
         }
 
@@ -47,7 +53,7 @@ namespace LemonadeStand
                     {
                         cupQty -= 1;
                         income += cupPrice;
-                        Console.WriteLine(person.customerName + " bought a cup!" + " You now have made $" + income + " and have " + cupQty + " cups of lemonade remaining.");
+                        Console.WriteLine(person.customerName + " bought a cup!" + " You now have made " + income.ToString("C2") + " and have " + cupQty + " cups of lemonade remaining.");
                     }
                     else if (person.cashClass.Equals(2))
                     {
@@ -55,7 +61,7 @@ namespace LemonadeStand
                         {
                             cupQty -= 1;
                             income += cupPrice;
-                            Console.WriteLine(person.customerName + " bought a cup!" + " You now have made $" + income + " and have " + cupQty + " cups of lemonade remaining.");
+                            Console.WriteLine(person.customerName + " bought a cup!" + " You now have made " + income.ToString("C2") + " and have " + cupQty + " cups of lemonade remaining.");
                         }
                     }
                     else if (person.cashClass.Equals(3))
@@ -64,7 +70,7 @@ namespace LemonadeStand
                         {
                             cupQty -= 1;
                             income += cupPrice;
-                            Console.WriteLine(person.customerName + " bought a cup!" + " You now have made $" + income + " and have " + cupQty + " cups of lemonade remaining.");
+                            Console.WriteLine(person.customerName + " bought a cup!" + " You now have made " + income.ToString("C2") + " and have " + cupQty + " cups of lemonade remaining.");
                         }
                     }
                     else if (person.cashClass.Equals(4))
@@ -73,7 +79,7 @@ namespace LemonadeStand
                         {
                             cupQty -= 1;
                             income += cupPrice;
-                            Console.WriteLine(person.customerName + " bought a cup!" + " You now have $" + income + " and " + cupQty + " cups of lemonade remaining.");
+                            Console.WriteLine(person.customerName + " bought a cup!" + " You now have " + income.ToString("C2") + " and " + cupQty + " cups of lemonade remaining.");
                         }
                     }
                     if (person.cashClass.Equals(5))
@@ -82,7 +88,7 @@ namespace LemonadeStand
                         {
                             cupQty -= 1;
                             income += cupPrice;
-                            Console.WriteLine(person.customerName + " bought a cup!" + " You now have made $" + income + " and have " + cupQty + " cups of lemonade remaining.");
+                            Console.WriteLine(person.customerName + " bought a cup!" + " You now have made " + income.ToString("C2") + " and have " + cupQty + " cups of lemonade remaining.");
                         }
                     }
                     else if (person.cashClass.Equals(6))
@@ -91,7 +97,7 @@ namespace LemonadeStand
                         {
                             cupQty -= 1;
                             income += cupPrice;
-                            Console.WriteLine(person.customerName + " bought a cup!" + " You now have made $" + income + " and have " + cupQty + " cups of lemonade remaining.");
+                            Console.WriteLine(person.customerName + " bought a cup!" + " You now have made " + income.ToString("C2") + " and have " + cupQty + " cups of lemonade remaining.");
                         }
                     }
                     else if (person.cashClass.Equals(7))
@@ -100,7 +106,7 @@ namespace LemonadeStand
                         {
                             cupQty -= 1;
                             income += cupPrice;
-                            Console.WriteLine(person.customerName + " bought a cup!" + " You now have made $" + income + " and have " + cupQty + " cups of lemonade remaining.");
+                            Console.WriteLine(person.customerName + " bought a cup!" + " You now have made " + income.ToString("C2") + " and have " + cupQty + " cups of lemonade remaining.");
                         }
                     }
                     else if (person.cashClass.Equals(8))
@@ -109,7 +115,7 @@ namespace LemonadeStand
                         {
                             cupQty -= 1;
                             income += cupPrice;
-                            Console.WriteLine(person.customerName + " bought a cup!" + " You now have $" + income + " and " + cupQty + " cups of lemonade remaining.");
+                            Console.WriteLine(person.customerName + " bought a cup!" + " You now have " + income.ToString("C2") + " and " + cupQty + " cups of lemonade remaining.");
                         }
                     }
                 }

@@ -20,7 +20,7 @@ namespace LemonadeStand
         public void storeFront(double lemonCount, double sugarCount, double iceCount, double money)
         {
             Console.WriteLine("Welcome to the lemonade store, we carry everything the lemonade industry might need. Lemons, Sugar and Ice.");
-            Console.WriteLine("Money: " + money + " Lemons: " + lemonCount + " Sugar: " + sugarCount + " Icecubes: " + iceCount);
+            Console.WriteLine("Money: " + money.ToString("C2") + " Lemons: " + lemonCount + " Sugar: " + sugarCount + " Icecubes: " + iceCount);
         }
         //LEMON STORE
         public double buyLemons(double lemonCount, double money)
@@ -32,7 +32,7 @@ namespace LemonadeStand
             supplyChoice = supplyChoice.ToLower();
             if (supplyChoice.Equals("y"))
             {
-                Console.WriteLine("$" + lemonPackPrice + " for " + lemonPack + " lemons! You currently have $" + money +
+                Console.WriteLine(lemonPackPrice.ToString("C2") + " for " + lemonPack + " lemons! You currently have " + money.ToString("C2") +
                     ". Please enter the number of lemon packs you would like to buy.");
                 lemonPurchase = double.Parse(Console.ReadLine());
                 return lemonPurchase;
@@ -48,7 +48,7 @@ namespace LemonadeStand
             supplyChoice = supplyChoice.ToLower();
             if (supplyChoice.Equals("y"))
             {
-                Console.WriteLine("$" + icePackPrice + " for " + icePack + " ice cubes! You currently have $" + money +
+                Console.WriteLine(icePackPrice.ToString("C2") + " for " + icePack + " ice cubes! You currently have " + money.ToString("C2") +
                     ". Please enter the number of ice cubes you would like to buy.");
                 icePurchase = double.Parse(Console.ReadLine());
                 return icePurchase;
@@ -64,7 +64,7 @@ namespace LemonadeStand
             supplyChoice = supplyChoice.ToLower();
             if (supplyChoice.Equals("y"))
             {
-                Console.WriteLine("$" + sugarPackPrice + " for " + sugarPack + " cups of sugar! You currently have $" + money +
+                Console.WriteLine(sugarPackPrice.ToString("C2") + " for " + sugarPack + " cups of sugar! You currently have " + money.ToString("C2") +
                     ". Please enter how many cups of sugar you would like to buy.");
                 sugarPurchase = double.Parse(Console.ReadLine());
                 return sugarPurchase;
