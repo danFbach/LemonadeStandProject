@@ -49,7 +49,7 @@ namespace LemonadeStand
             if (supplyChoice.Equals("y"))
             {
                 Console.WriteLine("$" + icePackPrice + " for " + icePack + " ice cubes! You currently have $" + money +
-                    ". Please enter the number of lemon packs you would like to buy.");
+                    ". Please enter the number of ice cubes you would like to buy.");
                 icePurchase = double.Parse(Console.ReadLine());
                 return icePurchase;
             }
@@ -65,7 +65,7 @@ namespace LemonadeStand
             if (supplyChoice.Equals("y"))
             {
                 Console.WriteLine("$" + sugarPackPrice + " for " + sugarPack + " cups of sugar! You currently have $" + money +
-                    ". Please enter the number of lemon packs you would like to buy.");
+                    ". Please enter how many cups of sugar you would like to buy.");
                 sugarPurchase = double.Parse(Console.ReadLine());
                 return sugarPurchase;
             }

@@ -48,13 +48,12 @@
     <Compile Include="fileReader.cs" />
     <Compile Include="fileWriter.cs" />
     <Compile Include="Game.cs" />
-    <Compile Include="gameEngine.cs" />
+    <Compile Include="lemonadePitchers.cs" />
     <Compile Include="mainMenu.cs" />
     <Compile Include="player.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="buySupplies.cs" />
-    <Compile Include="userInterface.cs" />
     <Compile Include="weatherSim.cs" />
   </ItemGroup>
   <ItemGroup>

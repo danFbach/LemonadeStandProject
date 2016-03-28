@@ -13,18 +13,24 @@ namespace LemonadeStand
         {
             mainMenu startGame = new mainMenu();
             buySupplies purchaseSupplies = new buySupplies();
+            weatherSim simulateWeather = new weatherSim();
+            lemonadePitchers make = new lemonadePitchers();
+            day startTheDay = new day();
             int dayLimiter = startGame.pickDayLimit();
             double lemons = stats.lemonCount;
             double icecubes = stats.iceCount;
             double sugar = stats.sugarCount;
             double money = stats.money;
+            double cupPrice;
 
-            weatherSim simulateWeather = new weatherSim();
             simulateWeather.largeScaleWeather(dayLimiter);
 
             for (int currentDay = 0;currentDay < dayLimiter;currentDay++)
-            {                
+            {
+                //daily weather
+                double QtyOfPotentialCustomers = simulateWeather.weatherReport(currentDay);
                 purchaseSupplies.storeFront(lemons, sugar, icecubes, money);
+                //store
                 double lemonPurchase = purchaseSupplies.buyLemons(lemons,money);
                 lemons = purchaseSupplies.ingredientTotal(lemonPurchase, lemons, "lemons");
                 money = purchaseSupplies.moneyBalanceAdjustment(money,lemonPurchase,"lemons");
@@ -34,31 +40,19 @@ namespace LemonadeStand
                 double icePurchase = purchaseSupplies.buyIce(icecubes,money);
                 icecubes = purchaseSupplies.ingredientTotal(icePurchase, icecubes, "ice");
                 money = purchaseSupplies.moneyBalanceAdjustment(money, sugarPurchase, "ice");
-                Console.WriteLine(money + ", " + lemons + ", " + sugar + ", " + icecubes);
-                Console.ReadLine();
-
-                double QtyOfPotentialCustomers = simulateWeather.weatherReport(currentDay);
-                Console.WriteLine(QtyOfPotentialCustomers + " should be number of customers, presss enter.");
-                Console.ReadLine();
-
-                day startTheDay = new day();
+                Console.WriteLine("You have $" + money + ", " + lemons + " lemons, " + sugar + " cups of sugar and " + icecubes + " ice cubes.");
+                //make pitchers
+                double pitcherQty = make.selectPitchers(lemons, sugar, icecubes);
+                lemons = make.calcIngredients(lemons, pitcherQty, "lemons");
+                sugar = make.calcIngredients(sugar, pitcherQty, "sugar");
+                icecubes = make.calcIngredients(icecubes, pitcherQty, "ice");
+                //price cup
+                cupPrice = startTheDay.pricePerCup();
                 startTheDay.makeNewCustomers(QtyOfPotentialCustomers);
-                startTheDay.displayCustomers();
-
-                double pitcherQty = startTheDay.selectPitchers(lemons, sugar, icecubes);
-                lemons = startTheDay.calcIngredients(lemons, pitcherQty, "lemons");
-                sugar = startTheDay.calcIngredients(lemons, pitcherQty, "sugar");
-                icecubes = startTheDay.calcIngredients(lemons, pitcherQty, "ice");
-
-                Console.WriteLine(money + ", " + lemons + ", " + sugar + ", " + icecubes);
-
-
-                Console.ReadKey();
+                //return money made
+                money += startTheDay.daySim(pitcherQty,cupPrice);
+                Console.WriteLine("You have $" + money + ", " + lemons + " lemons, " + sugar + " cups of sugar and " + icecubes + " ice cubes.");
             }           
         }
     }
 }
-
-//get customers to buy lemonade...
-//have player choose to make x # of pitchers
-//build engine to account for cups purchased/pitchers being consumed/money coming in
