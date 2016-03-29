@@ -9,8 +9,6 @@ namespace LemonadeStand
     public class weatherSim
     {
         public List<int> dailyWeather = new List<int>();
-
-        
         public double weatherRand = 0;
         public List<int> largeScaleWeather(int dayLimit)
         {
@@ -30,7 +28,6 @@ namespace LemonadeStand
             weatherRand = todaysWeather;
             Console.ForegroundColor = ConsoleColor.Yellow;
             Console.WriteLine("It's a new day to sell lemonade and the weather today will be...");
-
             if (weatherRand.Equals(1))
             {
                 Console.WriteLine("...Cold and there will be thunderstorms, a very poor day to be a lemonade stand entrepenuer.");

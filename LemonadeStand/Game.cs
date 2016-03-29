@@ -60,13 +60,13 @@ namespace LemonadeStand
                 double QtyOfPotentialCustomers = simulateWeather.weatherReport(todaysWeather);
                 purchaseSupplies.storeFront(lemons, sugar, icecubes, money);
                 //store
-                double lemonPurchase = purchaseSupplies.buyLemons(lemons, money);
+                double lemonPurchase = purchaseSupplies.purchaseSupplies(lemons, money, "lemons");
+                double sugarPurchase = purchaseSupplies.purchaseSupplies(sugar, money, "cups of sugar");
+                double icePurchase = purchaseSupplies.purchaseSupplies(icecubes, money, "ice cubes");
+                money = purchaseSupplies.moneyBalanceAdjustment(money, lemonPurchase, sugarPurchase, icePurchase);
                 lemons = purchaseSupplies.ingredientTotal(lemonPurchase, lemons, "lemons");
-                double sugarPurchase = purchaseSupplies.buySugar(sugar, money);
                 sugar = purchaseSupplies.ingredientTotal(sugarPurchase, sugar, "sugar");
-                double icePurchase = purchaseSupplies.buyIce(icecubes, money);
                 icecubes = purchaseSupplies.ingredientTotal(icePurchase, icecubes, "ice");
-                money = purchaseSupplies.moneyBalanceAdjustment(money, lemonPurchase, sugarPurchase, icePurchase);                
                 Console.WriteLine("You have " + money.ToString("C2") + ", " + lemons + " lemons, " + sugar + " cups of sugar and " + icecubes + " ice cubes.");
                 //make pitchers
                 double pitcherQty = make.selectPitchers(lemons, sugar, icecubes);
