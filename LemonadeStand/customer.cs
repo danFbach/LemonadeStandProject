@@ -9,11 +9,14 @@ namespace LemonadeStand
     public class customer
     {
         Random name = new Random();
+        Random tipping = new Random();
         public string customerName;
         public int cashClass;
+        public int tipper;
         public customer(int cash)
         {
             cashClass = cash;
+            tipper = tipping.Next(1, 4);
 
             int randName = name.Next(1, 11);
             if (randName.Equals(1))

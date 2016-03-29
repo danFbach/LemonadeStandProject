@@ -42,8 +42,10 @@ namespace LemonadeStand
             double cupQty = pitcherQty * 8;
             double income = 0;
             double cupPriceLimit = 0;
+            double tip;
             foreach (customer person in potentialCustomers)
             {
+                tip = 0;
                 Thread.Sleep(20);
                 if (cupQty > 0)
                 {
@@ -83,10 +85,28 @@ namespace LemonadeStand
                     }
                     if (cupPrice <= cupPriceLimit)
                     {
-                        cupQty -= 1;
-                        income += cupPrice;
-                        Console.WriteLine(person.customerName + " bought a cup!" + " You now have " + income.ToString("C2") + " and " + cupQty + " cups of lemonade remaining.");
+                        if (person.tipper.Equals(3))
+                        {
+                            tip = .15;
+                        }
+                        else if (person.tipper.Equals(2))
+                        {
+                            tip = .05;
+                        }
+                        if (tip > 0)
+                        {
+                            cupQty -= 1;
+                            income += cupPrice + tip;
+                            Console.WriteLine(person.customerName + " bought a cup and gave you a " + tip.ToString("C2") + " tip! You now have " + income.ToString("C2") + " and " + cupQty + " cups of lemonade remaining.");
+                        }
+                        else if(tip.Equals(0))
+                        {
+                            cupQty -= 1;
+                            income += cupPrice;
+                            Console.WriteLine(person.customerName + " bought a cup!" + " You now have " + income.ToString("C2") + " and " + cupQty + " cups of lemonade remaining.");
+                        }
                     }
+                    
                 }
             }
             Console.WriteLine("Feel free to look at what your customers bought, press enter to continue.");
