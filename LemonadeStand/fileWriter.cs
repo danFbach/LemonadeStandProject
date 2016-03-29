@@ -39,7 +39,7 @@ namespace LemonadeStand
             }
         }
 
-        public List<fileWriter> saveStats(double dailyIncome, double moneyTotals, double profits, double lemons, double sugar, double day, double dayLimit)
+        public void saveStats(double dailyIncome, double moneyTotals, double profits, double lemons, double sugar, double day, double dayLimit)
         {
             finances.Add(new fileWriter(dailyIncome, moneyTotals, profits, day));
             using(StreamWriter saveGame = new StreamWriter(outputFile+"gameStats.csv"))
@@ -54,7 +54,6 @@ namespace LemonadeStand
                 string strDayLimit = dayLimit.ToString();
                 saveGame.WriteLine("{0},{1},{2},{3},{4},{5},{6}{7}", strDay, strMoneyTotals, strProfits, strDailyIncome, strLemons, strSugar, strDayLimit, Environment.NewLine);
             }                      
-            return finances;
         }
     }
 }

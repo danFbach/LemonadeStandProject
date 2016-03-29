@@ -98,26 +98,15 @@ namespace LemonadeStand
 
         }
         //money calc
-        public double moneyBalanceAdjustment(double userBalance, double numberPurchased, string itemPurchased)
+        public double moneyBalanceAdjustment(double userBalance, double lemonsPurchased, double sugarPurchased, double icePurchased)
         {
-            if (itemPurchased.Equals("lemons"))
-            {
-                double pricePerQty = 2.50;
-                userBalance -= (numberPurchased * pricePerQty);
-                return userBalance;
-            }
-            else if (itemPurchased.Equals("sugar"))
-            {
-                double pricePerQty = 3;
-                userBalance -= (numberPurchased * pricePerQty);
-                return userBalance;
-            }
-            else if (itemPurchased.Equals("ice"))
-            {
-                double pricePerQty = 1.50;
-                userBalance -= (numberPurchased * pricePerQty);
-                return userBalance;
-            }
+            
+            double priceLemons = 2.50;
+            double priceSugar = 3;
+            double priceIce = 1.50;
+            userBalance -= (lemonsPurchased * priceLemons);            
+            userBalance -= (sugarPurchased * priceSugar);            
+            userBalance -= (icePurchased * priceIce);           
             return userBalance;
         }
     }

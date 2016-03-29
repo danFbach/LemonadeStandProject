@@ -48,10 +48,10 @@ namespace LemonadeStand
                 dayLimiter = retrieveGameData.getDayLimit();
                 currentDay = retrieveGameData.getDay();
                 Console.ForegroundColor = ConsoleColor.White;
-                Console.WriteLine("In your loaded game you have " + (dayLimiter-currentDay) + " days remaining, " + lemons + " lemons, " + sugar + " cups of sugar, no ice and " + money.ToString("C2") );
+                Console.WriteLine("In your loaded game you have " + (dayLimiter-(currentDay)) + " days remaining, " + lemons + " lemons, " + sugar + " cups of sugar, no ice and " + money.ToString("C2") );
             }
 
-            for (currentDay = 0; currentDay < dayLimiter; currentDay++)
+            for (;currentDay < dayLimiter;)
             {
 
                 double tempMoney = money;
@@ -62,13 +62,11 @@ namespace LemonadeStand
                 //store
                 double lemonPurchase = purchaseSupplies.buyLemons(lemons, money);
                 lemons = purchaseSupplies.ingredientTotal(lemonPurchase, lemons, "lemons");
-                money = purchaseSupplies.moneyBalanceAdjustment(money, lemonPurchase, "lemons");
                 double sugarPurchase = purchaseSupplies.buySugar(sugar, money);
                 sugar = purchaseSupplies.ingredientTotal(sugarPurchase, sugar, "sugar");
-                money = purchaseSupplies.moneyBalanceAdjustment(money, sugarPurchase, "sugar");
                 double icePurchase = purchaseSupplies.buyIce(icecubes, money);
                 icecubes = purchaseSupplies.ingredientTotal(icePurchase, icecubes, "ice");
-                money = purchaseSupplies.moneyBalanceAdjustment(money, sugarPurchase, "ice");
+                money = purchaseSupplies.moneyBalanceAdjustment(money, lemonPurchase, sugarPurchase, icePurchase);                
                 Console.WriteLine("You have " + money.ToString("C2") + ", " + lemons + " lemons, " + sugar + " cups of sugar and " + icecubes + " ice cubes.");
                 //make pitchers
                 double pitcherQty = make.selectPitchers(lemons, sugar, icecubes);
@@ -89,7 +87,10 @@ namespace LemonadeStand
                 //save data from end of day
                 save.saveStats(dailyIncome, money, dailyProfit, lemons, sugar, currentDay, dayLimiter);
                 Console.ForegroundColor = ConsoleColor.Cyan;
-                Console.WriteLine( "Today you made " + dailyIncome.ToString("C2") + ", for a profit of " + dailyProfit.ToString("C2") + " You now have " + money.ToString("C2") + " in your pocket, " + lemons + " lemons, " + sugar + " cups of sugar and " + icecubes + " ice cubes because they melted.");
+                Console.WriteLine( "Today, day " + (currentDay + 1) + ", you made " + dailyIncome.ToString("C2") + ", for a profit of " + dailyProfit.ToString("C2") + " You now have " + money.ToString("C2") + " in your pocket, " + lemons + " lemons, " + sugar + " cups of sugar and " + icecubes + " ice cubes because they melted. Press enter to continue to the next day, "+(dayLimiter-(currentDay+1))+" days remain.");
+                Console.ReadKey();
+                Console.Clear();
+                currentDay += 1;
             }            
             Console.ReadLine();
         }

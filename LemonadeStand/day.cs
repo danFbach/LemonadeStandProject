@@ -44,6 +44,7 @@ namespace LemonadeStand
             Console.ForegroundColor = ConsoleColor.Magenta;
             double cupQty = pitcherQty * 8;
             double income = 0;
+            double cupPriceLimit = 0;
 
             foreach (customer person in potentialCustomers)
             {
@@ -54,73 +55,44 @@ namespace LemonadeStand
                     {
                         cupQty -= 1;
                         income += cupPrice;
-                        Console.WriteLine(person.customerName + " bought a cup!" + " You now have made " + income.ToString("C2") + " and have " + cupQty + " cups of lemonade remaining.");
+                        Console.WriteLine(person.customerName + " bought a cup!" + " You now have " + income.ToString("C2") + " and " + cupQty + " cups of lemonade remaining.");
                     }
                     else if (person.cashClass.Equals(2))
                     {
-                        if (cupPrice <= .35)
-                        {
-                            cupQty -= 1;
-                            income += cupPrice;
-                            Console.WriteLine(person.customerName + " bought a cup!" + " You now have made " + income.ToString("C2") + " and have " + cupQty + " cups of lemonade remaining.");
-                        }
+                        cupPriceLimit = .35;                        
                     }
                     else if (person.cashClass.Equals(3))
                     {
-                        if (cupPrice <= .32)
-                        {
-                            cupQty -= 1;
-                            income += cupPrice;
-                            Console.WriteLine(person.customerName + " bought a cup!" + " You now have made " + income.ToString("C2") + " and have " + cupQty + " cups of lemonade remaining.");
-                        }
+                        cupPriceLimit = .32;                        
                     }
                     else if (person.cashClass.Equals(4))
                     {
-                        if (cupPrice <= .30)
-                        {
-                            cupQty -= 1;
-                            income += cupPrice;
-                            Console.WriteLine(person.customerName + " bought a cup!" + " You now have " + income.ToString("C2") + " and " + cupQty + " cups of lemonade remaining.");
-                        }
+                        cupPriceLimit = .30;                        
                     }
-                    if (person.cashClass.Equals(5))
+                    else if (person.cashClass.Equals(5))
                     {
-                        if(cupPrice <= 27)
-                        {
-                            cupQty -= 1;
-                            income += cupPrice;
-                            Console.WriteLine(person.customerName + " bought a cup!" + " You now have made " + income.ToString("C2") + " and have " + cupQty + " cups of lemonade remaining.");
-                        }
+                        cupPriceLimit = 27;                        
                     }
                     else if (person.cashClass.Equals(6))
                     {
-                        if (cupPrice <= .25)
-                        {
-                            cupQty -= 1;
-                            income += cupPrice;
-                            Console.WriteLine(person.customerName + " bought a cup!" + " You now have made " + income.ToString("C2") + " and have " + cupQty + " cups of lemonade remaining.");
-                        }
+                        cupPriceLimit = .25;                        
                     }
                     else if (person.cashClass.Equals(7))
                     {
-                        if (cupPrice <= .23)
-                        {
-                            cupQty -= 1;
-                            income += cupPrice;
-                            Console.WriteLine(person.customerName + " bought a cup!" + " You now have made " + income.ToString("C2") + " and have " + cupQty + " cups of lemonade remaining.");
-                        }
+                        cupPriceLimit = .23;                        
                     }
                     else if (person.cashClass.Equals(8))
                     {
-                        if (cupPrice <= .20)
-                        {
-                            cupQty -= 1;
-                            income += cupPrice;
-                            Console.WriteLine(person.customerName + " bought a cup!" + " You now have " + income.ToString("C2") + " and " + cupQty + " cups of lemonade remaining.");
-                        }
+                        cupPriceLimit = .20;
+                    }
+                    if(cupPrice <= cupPriceLimit)
+                    {
+                        cupQty -= 1;
+                        income += cupPrice;
+                        Console.WriteLine(person.customerName + " bought a cup!" + " You now have " + income.ToString("C2") + " and " + cupQty + " cups of lemonade remaining.");
                     }
                 }
-            }
+            }Console.WriteLine("Feel free to look at what your customers bought, press enter to continue.");
             return income;
         }        
     }

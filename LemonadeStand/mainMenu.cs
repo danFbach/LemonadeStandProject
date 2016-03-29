@@ -22,8 +22,23 @@ namespace LemonadeStand
 
         public int pickDayLimit()
         {
-            Console.WriteLine("Pick number of days to run simulation.");
+            Console.WriteLine("How many weeks will we run the simulation, 1, 2 or 3?");
             dayLimit = int.Parse(Console.ReadLine());
+            switch (dayLimit)
+            {
+                case (1):
+                    dayLimit = 7;
+                    return dayLimit;
+                case (2):
+                    dayLimit = 14;
+                    return dayLimit;
+                case (3):
+                    dayLimit = 21;
+                    return dayLimit; 
+                default:
+                    pickDayLimit();
+                    break;
+            }
             return dayLimit;
         }
     }
