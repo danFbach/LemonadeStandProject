@@ -38,7 +38,7 @@ namespace LemonadeStand
         }
         public double daySim(double pitcherQty, double cupPrice)
         {
-            Console.ForegroundColor = ConsoleColor.Magenta;
+            Console.ForegroundColor = ConsoleColor.DarkMagenta;
             double cupQty = pitcherQty * 8;
             double income = 0;
             double cupPriceLimit = 0;

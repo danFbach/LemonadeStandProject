@@ -27,11 +27,11 @@ namespace LemonadeStand
             else if (recipeType.Equals(2))
             {
                 Console.WriteLine("First, I think you should know that you will get 8 cups per pitcher. So, how many lemons would you like to use per pitcher?");
-                lemonsPer = double.Parse(Console.ReadLine());
+                double.TryParse(Console.ReadLine(), out lemonsPer);
                 Console.WriteLine("Second, how many cups of sugar per pitcher?");
-                sugarPer = double.Parse(Console.ReadLine());
+                double.TryParse(Console.ReadLine(), out sugarPer);
                 Console.WriteLine("Last, how many ice cubes would you like to put in each pitcher?");
-                icePer = double.Parse(Console.ReadLine());
+                double.TryParse(Console.ReadLine(), out icePer);
             }
         }
         public double selectPitchers(double lemons, double sugar, double iceCubes)
