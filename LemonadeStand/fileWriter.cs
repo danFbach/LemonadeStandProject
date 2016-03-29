@@ -10,11 +10,14 @@ namespace LemonadeStand
     public class fileWriter
     {
         StringBuilder csv = new StringBuilder();
+        weatherSim save = new weatherSim();
         double income2;
         double balance2;
         double dailyProfit;
         double day;
+        string outputFile = @"C:\Users\Dan DCC\Documents\Visual Studio 2015\Projects\LemonadeStandProject\LemonadeStand\";
         public List<fileWriter> finances = new List<fileWriter>();
+
         
         public fileWriter(double income, double balance, double profit, double currentDay)
         {
@@ -23,10 +26,21 @@ namespace LemonadeStand
             dailyProfit = profit;
             day = currentDay + 1;
         }
+        public void saveWeather(List<int> weatherInput)
+        {
+            
+            using (StreamWriter weather = new StreamWriter(outputFile + "weather.csv"))
+            {
+                foreach (int weatherInt in weatherInput)
+                {
+                    string strWeatherDay = weatherInt.ToString();
+                    weather.Write(strWeatherDay + ",");
+                }
+            }
+        }
 
         public List<fileWriter> saveStats(double dailyIncome, double moneyTotals, double profits, double lemons, double sugar, double day, double dayLimit)
         {
-            string outputFile = @"C:\Users\Dan DCC\Documents\Visual Studio 2015\Projects\LemonadeStandProject\LemonadeStand\";
             finances.Add(new fileWriter(dailyIncome, moneyTotals, profits, day));
             using(StreamWriter saveGame = new StreamWriter(outputFile+"gameStats.csv"))
             {

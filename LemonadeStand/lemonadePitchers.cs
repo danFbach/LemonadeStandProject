@@ -9,7 +9,8 @@ namespace LemonadeStand
     class lemonadePitchers
     {
         public double selectPitchers(double lemons, double sugar, double iceCubes)
-        {   
+        {
+            Console.ForegroundColor = ConsoleColor.DarkCyan;
             double numberOfPitchers = 0;
             Console.WriteLine("It takes 5 lemons, 4 cups of sugar and 15 icecubes to make a pitcher of lemonade.");
             Console.WriteLine("You currently have " + lemons + " lemons, " + sugar + " packs of sugar and " + iceCubes + " ice cubes.");

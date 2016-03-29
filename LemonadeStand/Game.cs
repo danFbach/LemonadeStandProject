@@ -9,7 +9,8 @@ namespace LemonadeStand
     public class Game
     {
         player stats = new player();
-        
+        public List<int> weatherstuff;
+
         public void test()
         {
             fileWriter save = new fileWriter(0, 0, 0, 0);
@@ -30,28 +31,33 @@ namespace LemonadeStand
             int selection = startGame.gameSelection();
             if (selection.Equals(1))
             {
+                //new game
                 dayLimiter = startGame.pickDayLimit();
-                simulateWeather.largeScaleWeather(dayLimiter);
+                weatherstuff = simulateWeather.largeScaleWeather(dayLimiter);
+                save.saveWeather(weatherstuff);
             }
             else if (selection.Equals(2))
             {
+                //reload previous game with correct money, inventory and weather conditions
                 fileReader retrieveGameData = new fileReader();
+                weatherstuff = retrieveGameData.getWeatherData();
                 retrieveGameData.dataDecoder();
                 lemons = retrieveGameData.getLemons();
                 sugar = retrieveGameData.getSugar();
                 money = retrieveGameData.getTotalMoney();
                 dayLimiter = retrieveGameData.getDayLimit();
                 currentDay = retrieveGameData.getDay();
+                Console.ForegroundColor = ConsoleColor.White;
                 Console.WriteLine("In your loaded game you have " + (dayLimiter-currentDay) + " days remaining, " + lemons + " lemons, " + sugar + " cups of sugar, no ice and " + money.ToString("C2") );
             }
 
             for (currentDay = 0; currentDay < dayLimiter; currentDay++)
             {
 
-                double dailyProfit = 0;
                 double tempMoney = money;
                 //daily weather
-                double QtyOfPotentialCustomers = simulateWeather.weatherReport(currentDay);
+                int todaysWeather = weatherstuff[currentDay];
+                double QtyOfPotentialCustomers = simulateWeather.weatherReport(todaysWeather);
                 purchaseSupplies.storeFront(lemons, sugar, icecubes, money);
                 //store
                 double lemonPurchase = purchaseSupplies.buyLemons(lemons, money);
@@ -66,19 +72,24 @@ namespace LemonadeStand
                 Console.WriteLine("You have " + money.ToString("C2") + ", " + lemons + " lemons, " + sugar + " cups of sugar and " + icecubes + " ice cubes.");
                 //make pitchers
                 double pitcherQty = make.selectPitchers(lemons, sugar, icecubes);
+                //subtract ingredients based on pitchers qty
                 lemons = make.calcIngredients(lemons, pitcherQty, "lemons");
                 sugar = make.calcIngredients(sugar, pitcherQty, "sugar");
                 icecubes = make.calcIngredients(icecubes, pitcherQty, "ice");
                 //price cup
                 cupPrice = startTheDay.pricePerCup();
                 startTheDay.makeNewCustomers(QtyOfPotentialCustomers);
-                //return money made
+                //sim a day
                 dailyIncome = startTheDay.daySim(pitcherQty, cupPrice);
+                //return money made and reset some values
+                double dailyProfit = 0;
                 money += dailyIncome;
                 dailyProfit = money - tempMoney;
-                save.saveStats(dailyIncome, money, dailyProfit, lemons, sugar, currentDay, dayLimiter);
                 icecubes = 0;
-                Console.WriteLine("You have " + money.ToString("C2") + ", " + lemons + " lemons, " + sugar + " cups of sugar and " + icecubes + " ice cubes because they melted.");
+                //save data from end of day
+                save.saveStats(dailyIncome, money, dailyProfit, lemons, sugar, currentDay, dayLimiter);
+                Console.ForegroundColor = ConsoleColor.Cyan;
+                Console.WriteLine( "Today you made " + dailyIncome.ToString("C2") + ", for a profit of " + dailyProfit.ToString("C2") + " You now have " + money.ToString("C2") + " in your pocket, " + lemons + " lemons, " + sugar + " cups of sugar and " + icecubes + " ice cubes because they melted.");
             }            
             Console.ReadLine();
         }

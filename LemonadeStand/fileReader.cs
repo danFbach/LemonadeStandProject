@@ -10,6 +10,7 @@ namespace LemonadeStand
     public class fileReader
     {
         string gameData;
+        string weatherData;
         public string strLemons;
         public string strSugar;
         public string strIncome;
@@ -17,19 +18,27 @@ namespace LemonadeStand
         public string strTotalMoney;
         public string strDay;
         public string strDayLimit;
-        public void loadinggame()
+        public string filepath = @"c:\users\dan dcc\documents\visual studio 2015\projects\lemonadestandproject\lemonadestand\";
+        public List<int> getWeatherData()
         {
-            
-            string filepath = @"c:\users\dan dcc\documents\visual studio 2015\projects\lemonadestandproject\lemonadestand\";
-            using (StreamReader loadGame = new StreamReader(filepath + "gamestats.csv"))
+            List<int> weatherRetrieval = new List<int>();
+            using (StreamReader loadWeather = new StreamReader(filepath + "weather.csv"))
             {
-                gameData = loadGame.ReadLine();
+                weatherData = loadWeather.ReadLine();
             }
-            
+            char removal = ',';
+            string[] decodeWeather = weatherData.Split(removal);
+            int dayOfWeather = decodeWeather.Count();
+            for (int i = 0;i < dayOfWeather-1;i++)
+            {
+                int dayWeather = Convert.ToInt16(decodeWeather[i]);
+                weatherRetrieval.Add(dayWeather);
+            }
+            return weatherRetrieval;
         }
+        
         public void dataDecoder()
         {
-            string filepath = @"c:\users\dan dcc\documents\visual studio 2015\projects\lemonadestandproject\lemonadestand\";
             using (StreamReader loadGame = new StreamReader(filepath + "gamestats.csv"))
             {
                 gameData = loadGame.ReadLine();

@@ -2,28 +2,33 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
+using System.Threading;
 
 namespace LemonadeStand
 {
     public class weatherSim
     {
-        public double weatherRand = 0;
         public List<int> dailyWeather = new List<int>();
-        public void largeScaleWeather(int dayLimit)
+
+        
+        public double weatherRand = 0;
+        public List<int> largeScaleWeather(int dayLimit)
         {
             Random forecast = new Random();
             for (int days = 0; days < dayLimit; days++)
             {
                 dailyWeather.Add(forecast.Next(1, 6));
+                Thread.Sleep(10);
             }
+            return dailyWeather;
         }
-        public double weatherReport(int currentDay)
+        public double weatherReport(int todaysWeather)
         {
             double aCustomer;
             Random customers = new Random();
             int weatherRand;
-            weatherRand = dailyWeather[currentDay];
+            weatherRand = todaysWeather;
+            Console.ForegroundColor = ConsoleColor.Yellow;
             Console.WriteLine("It's a new day to sell lemonade and the weather today will be...");
 
             if (weatherRand.Equals(1))

@@ -19,6 +19,7 @@ namespace LemonadeStand
 
         public void storeFront(double lemonCount, double sugarCount, double iceCount, double money)
         {
+            Console.ForegroundColor = ConsoleColor.Green;
             Console.WriteLine("Welcome to the lemonade store, we carry everything the lemonade industry might need. Lemons, Sugar and Ice.");
             Console.WriteLine("Money: " + money.ToString("C2") + " Lemons: " + lemonCount + " Sugar: " + sugarCount + " Icecubes: " + iceCount);
         }
