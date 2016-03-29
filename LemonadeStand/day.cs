@@ -109,7 +109,7 @@ namespace LemonadeStand
                     
                 }
             }
-            Console.WriteLine("Feel free to look at what your customers bought, press enter to continue.");
+            Console.WriteLine("Feel free to look at what your customers bought today, press enter to continue.");
             return income;
         }
     }

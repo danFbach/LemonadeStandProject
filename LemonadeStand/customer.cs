@@ -16,7 +16,7 @@ namespace LemonadeStand
         public customer(int cash)
         {
             cashClass = cash;
-            tipper = tipping.Next(1, 4);
+            tipper = tipping.Next(1, 5);
 
             int randName = name.Next(1, 11);
             if (randName.Equals(1))
