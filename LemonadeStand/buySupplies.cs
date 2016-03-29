@@ -50,32 +50,30 @@ namespace LemonadeStand
             if (supplyChoice.Equals("y"))
             {
                 Console.WriteLine(itemPackPrice.ToString("C2") + " for " + itemPackQty + " " + itemType + "! You currently have " + money.ToString("C2") + ". Please enter how many packs you would like.");
-                ingredientPurchaseQty = double.Parse(Console.ReadLine());
-                return ingredientPurchaseQty;
-            }
-            return ingredientPurchaseQty;
+                bool check = double.TryParse(Console.ReadLine(), out ingredientPurchaseQty);
+                while(check == false)
+                {
+                    return purchaseSupplies(itemQty, money, itemType);
+                }                    
+            }return ingredientPurchaseQty;
         }
         //ingredient calc
         public double ingredientTotal(double numberPurchased, double productCount, string type)
         {
+            double itemsPerPack = 0;
             if (type.Equals("lemons"))
             {
-                double itemsPerPack = 20;
-                productCount += (numberPurchased * itemsPerPack);
-                return productCount;
+                itemsPerPack = lemonPack;
             }
             else if (type.Equals("sugar"))
             {
-                double itemsPerPack = 16;
-                productCount += (numberPurchased * itemsPerPack);
-                return productCount;
+                itemsPerPack = sugarPack;
             }
             else if (type.Equals("ice"))
             {
-                double itemsPerPack = 65;
-                productCount += (numberPurchased * itemsPerPack);
-                return productCount;
+                itemsPerPack = icePack;
             }
+            productCount += (numberPurchased * itemsPerPack);
             return productCount;
         }
         //money calc

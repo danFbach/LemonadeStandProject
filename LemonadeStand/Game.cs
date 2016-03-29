@@ -69,6 +69,7 @@ namespace LemonadeStand
                 icecubes = purchaseSupplies.ingredientTotal(icePurchase, icecubes, "ice");
                 Console.WriteLine("You have " + money.ToString("C2") + ", " + lemons + " lemons, " + sugar + " cups of sugar and " + icecubes + " ice cubes.");
                 //make pitchers
+                make.makeARecipe();
                 double pitcherQty = make.selectPitchers(lemons, sugar, icecubes);
                 //subtract ingredients based on pitchers qty
                 lemons = make.calcIngredients(lemons, pitcherQty, "lemons");

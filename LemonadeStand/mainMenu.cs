@@ -14,12 +14,10 @@ namespace LemonadeStand
         {
             Console.WriteLine("Hello player, would you like to...");
             Console.WriteLine("1. Start a new game?");
-            Console.WriteLine("2. Load an old game?");
+            Console.WriteLine("2. Load the previous game?");
             gameSelect = int.Parse(Console.ReadLine());
             return gameSelect;
         }
-
-
         public int pickDayLimit()
         {
             Console.WriteLine("How many weeks will we run the simulation, 1, 2 or 3?");
