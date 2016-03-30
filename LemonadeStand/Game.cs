@@ -11,10 +11,9 @@ namespace LemonadeStand
         player stats = new player();
         public List<int> weatherData;
 
-        public void test()
+        public void onePlayerGame(int selection)
         {
             fileWriter save = new fileWriter(0, 0, 0, 0, 0);
-            mainMenu startGame = new mainMenu();
             buySupplies purchaseSupplies = new buySupplies();
             userInterface display = new userInterface();
             weatherSim simulateWeather = new weatherSim();
@@ -38,18 +37,16 @@ namespace LemonadeStand
             int todaysWeatherForecast;
             int daysOfSimulation = 0;
             int currentDay = 0;
-            int selection;
             int consWidth = 90;
             int consHeight = Console.WindowHeight;
             string customRecipe;
             string gameSave = "";
 
             Console.SetWindowSize(consWidth, consHeight);
-            selection = startGame.gameSelection();
             if (selection.Equals(1))
             {
                 //new game
-                daysOfSimulation = startGame.pickDayLimit();
+                daysOfSimulation = beginDayOfBusiness.pickDayLimit();
                 weatherData = simulateWeather.largeScaleWeather(daysOfSimulation);
                 save.saveWeather(weatherData);
             }

@@ -15,6 +15,29 @@ namespace LemonadeStand
         public Random buyOrNot = new Random();
         public double buyChance;
         public bool check;
+        int dayLimit;
+        public int pickDayLimit()
+        {
+            Console.ForegroundColor = ConsoleColor.White;
+            Console.WriteLine("How many weeks will we run the simulation, 1, 2 or 3?");
+            dayLimit = int.Parse(Console.ReadLine());
+            switch (dayLimit)
+            {
+                case (1):
+                    dayLimit = 7;
+                    return dayLimit;
+                case (2):
+                    dayLimit = 14;
+                    return dayLimit;
+                case (3):
+                    dayLimit = 21;
+                    return dayLimit;
+                default:
+                    pickDayLimit();
+                    break;
+            }
+            return dayLimit;
+        }
         public List<customer> makeTodaysCustomers(double customerLimit)
         {
             for (int customerNum = 0; customerNum < customerLimit; customerNum++)
@@ -137,7 +160,7 @@ namespace LemonadeStand
                     }                    
                 }
             }Console.ForegroundColor = ConsoleColor.Magenta;
-            Console.WriteLine("Of the " + potentialCount + " potential customers, you were able to sell to " + actualCount + " people today. You sold a second cup to " + secondCup + " people. \nFeel free to look at what your customers bought today. \nWhen you're finished, press enter to continue.");
+            Console.WriteLine("Of the " + potentialCount + " potential customers, you were able to sell to " + actualCount + " people today. You sold a second cup to " + secondCup + " people. \nFeel free to look at what your customers bought today.");
             return income;
         }
     }

@@ -8,38 +8,16 @@ namespace LemonadeStand
 {
     public class mainMenu
     {
-        int dayLimit;
         int gameSelect;
-        public int gameSelection()
+        public void gameSelection()
         {
+            Game startGame = new Game();
             Console.ForegroundColor = ConsoleColor.Red;
             Console.WriteLine("Hello player, would you like to...");
             Console.WriteLine("1. Start a new game?");
             Console.WriteLine("2. Load a previous game?");
             gameSelect = int.Parse(Console.ReadLine());
-            return gameSelect;
-        }
-        public int pickDayLimit()
-        {
-            Console.ForegroundColor = ConsoleColor.White;
-            Console.WriteLine("How many weeks will we run the simulation, 1, 2 or 3?");
-            dayLimit = int.Parse(Console.ReadLine());
-            switch (dayLimit)
-            {
-                case (1):
-                    dayLimit = 7;
-                    return dayLimit;
-                case (2):
-                    dayLimit = 14;
-                    return dayLimit;
-                case (3):
-                    dayLimit = 21;
-                    return dayLimit; 
-                default:
-                    pickDayLimit();
-                    break;
-            }
-            return dayLimit;
-        }
+            startGame.onePlayerGame(gameSelect);
+        }        
     }
 }

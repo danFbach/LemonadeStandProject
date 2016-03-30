@@ -10,7 +10,6 @@ namespace LemonadeStand
     public class fileWriter
     {
         string fileName;
-        double gameSlot;
         string saveChoice;
         string outputFile = @"C:\Users\Dan DCC\Documents\Visual Studio 2015\Projects\LemonadeStandProject\LemonadeStand\";
         public fileWriter(double balance, double currentDay, double dayLimit, double lemons, double sugar)
