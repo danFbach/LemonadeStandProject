@@ -11,13 +11,22 @@ namespace LemonadeStand
         Random name = new Random();
         Random tipping = new Random();
         public string customerName;
+        public string taste;
+        public int tasteClass;
         public int cashClass;
         public int tipper;
         public customer(int cash)
         {
+
+            tasteClass = tipping.Next(1, 8);
+            taste = tasteTest(tasteClass);
+            Thread.Sleep(5);
+
             cashClass = cash;
+
             tipper = tipping.Next(1, 6);
             Thread.Sleep(5);
+
             int randName = name.Next(1, 11);
             if (randName.Equals(1))
             {
@@ -59,8 +68,26 @@ namespace LemonadeStand
             {
                 customerName = "Tracy";
             }
-
-
+        }
+        public string tasteTest(int tasteNumber)
+        {
+            string tasteName;
+            if (tasteNumber.Equals(1))
+            {
+                tasteName = "sour";
+                return tasteName;
+            }
+            else if (tasteNumber.Equals(4))
+            {
+                tasteName = "sweet";
+                return tasteName;
+            }
+            else if (tasteNumber.Equals(7))
+            {
+                tasteName = "watery";
+                return tasteName;
+            }
+            return "";
         }
     }
 }

@@ -13,7 +13,7 @@ namespace LemonadeStand
         double icePer;
         double recipeType;
         bool errorCheck;
-        public void makeARecipe()
+        public string makeARecipe()
         {
             Console.ForegroundColor = ConsoleColor.Red;
             Console.WriteLine("It's time to make the lemonade.");
@@ -30,17 +30,31 @@ namespace LemonadeStand
                 Console.ForegroundColor = ConsoleColor.White; Console.Write(sugarPer + " cups of sugar and ");
                 Console.ForegroundColor = ConsoleColor.Cyan; Console.Write(sugarPer + " ice cubes ");
                 Console.ForegroundColor = ConsoleColor.White; Console.WriteLine("per pitcher.");
+                return null;
             }
             else if (recipeType.Equals(2))
             {
                 Console.ForegroundColor = ConsoleColor.White;
-                Console.WriteLine("First, I think you should know that you will get 8 cups per pitcher. So, how many lemons would you like to use per pitcher?");
+                Console.WriteLine("First, I think you should know that you will get 8 cups per pitcher. \nSo, how many lemons would you like to use per pitcher? 5 is default.");
                 double.TryParse(Console.ReadLine(), out lemonsPer);
-                Console.WriteLine("Second, how many cups of sugar per pitcher?");
+                Console.WriteLine("Second, how many cups of sugar per pitcher? 4 is default.");
                 double.TryParse(Console.ReadLine(), out sugarPer);
-                Console.WriteLine("Last, how many ice cubes would you like to put in each pitcher?");
+                Console.WriteLine("Last, how many ice cubes would you like to put in each pitcher? 15 is default.");
                 double.TryParse(Console.ReadLine(), out icePer);
+                if(lemonsPer > 5)
+                {
+                    return "sour";
+                }
+                else if(sugarPer > 4)
+                {
+                    return "sweet";
+                }
+                else if(icePer > 15)
+                {
+                    return "watery";
+                }
             }
+            return null;
         }
         public double selectPitchers(double lemons, double sugar, double iceCubes)
         {

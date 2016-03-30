@@ -8,7 +8,6 @@ namespace LemonadeStand
 {
     public class buySupplies
     {
-
         double lemonPack = 20;
         double sugarPack = 16;
         double icePack = 60;
@@ -17,16 +16,11 @@ namespace LemonadeStand
         double icePackPrice = 1.75;
         double itemPackPrice;
         double itemPackQty;
-        string fillIn;
-
-
-        public void storeFront(double lemonCount, double sugarCount, double iceCount, double money)
+        string fillIn;        
+        public double purchaseSupplies(double itemQty, double money, string itemType)
         {
             Console.ForegroundColor = ConsoleColor.White;
             Console.WriteLine("Welcome to the lemonade store, we carry everything the lemonade industry needs.");
-        }
-        public double purchaseSupplies(double itemQty, double money, string itemType)
-        {
             Console.ForegroundColor = ConsoleColor.Red;
             double ingredientPurchaseQty = 0;
             string supplyChoice;
@@ -55,8 +49,7 @@ namespace LemonadeStand
             supplyChoice = Console.ReadLine();
             supplyChoice = supplyChoice.ToLower();
             if (supplyChoice.Equals("y"))
-            {
-                
+            {                
                 Console.ForegroundColor = ConsoleColor.Green;
                 Console.Write(itemPackPrice.ToString("C2"));
 
@@ -86,11 +79,8 @@ namespace LemonadeStand
                     Console.WriteLine("You do not have enough money to buy " + ingredientPurchaseQty + fillIn + itemType + ".");
                     return purchaseSupplies(itemQty, money, itemType);
                 }                  
-
-
             }return ingredientPurchaseQty;
         }
-        //ingredient calc
         public double ingredientTotal(double numberPurchased, double productCount, string type)
         {
             double itemsPerPack = 0;
@@ -109,7 +99,6 @@ namespace LemonadeStand
             productCount += (numberPurchased * itemsPerPack);
             return productCount;
         }
-        //money calc
         public double adjustMoneyBalanceOfPurchase(double userBalance, double numberPurchased, string type)
         {
             double itemPrice = 0;
@@ -126,7 +115,6 @@ namespace LemonadeStand
             {
                 itemPrice = icePackPrice;
             }
-
             userBalance -= (numberPurchased * itemPrice);
             return userBalance;
         }
