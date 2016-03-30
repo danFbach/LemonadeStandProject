@@ -59,6 +59,8 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+    <None Include="gameStats2.csv" />
+    <None Include="gameStats3.csv" />
   </ItemGroup>
   <ItemGroup>
     <None Include="gameStats.csv">

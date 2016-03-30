@@ -30,11 +30,13 @@ namespace LemonadeStand
             double packsOfLemonsPurchased;
             double packsOfSugarPurchased;
             double packsOfIcePurchased;
+            double slotChoice = 0;
             int daysOfSimulation = 0;
             int currentDay = 0;
             int selection;
             int consWidth = 90;
             int consHeight = Console.WindowHeight;
+            string gameSave = "";
 
             Console.SetWindowSize(consWidth, consHeight);
             selection = startGame.gameSelection();
@@ -50,13 +52,14 @@ namespace LemonadeStand
                 //reload previous game with correct money, inventory and weather conditions
                 fileReader retrieveGameData = new fileReader();
                 weatherData = retrieveGameData.getWeatherData();
-                retrieveGameData.dataDecoder();
+                slotChoice = retrieveGameData.dataDecoder();
                 lemons = retrieveGameData.getLemons();
                 sugar = retrieveGameData.getSugar();
                 currentMoneyBalance = retrieveGameData.getTotalMoney();
                 daysOfSimulation = retrieveGameData.getDayLimit();
                 currentDay = retrieveGameData.getDay();
                 display.infoBar(lemons, sugar, iceCubes, currentMoneyBalance, 0,currentDay);
+                gameSave = "save";
                 Console.ForegroundColor = ConsoleColor.White;
                 Console.WriteLine("\nThe previous game has loaded. It is day " + (currentDay + 1) + " and there are " + (daysOfSimulation - currentDay) + " days left, including today. \nPress enter to continue.");
                 Console.ReadKey();
@@ -109,7 +112,9 @@ namespace LemonadeStand
                 iceCubes = meltIce;
                 //save data from end of day
                 currentDay += 1;
-                save.todaysStats(currentMoneyBalance, currentDay, daysOfSimulation, lemons, sugar);
+                gameSave = save.newSave(gameSave);
+                slotChoice = save.newSlot(gameSave,slotChoice);
+                save.todaysStats(currentMoneyBalance, currentDay, daysOfSimulation, lemons, sugar, slotChoice);
                 Console.ForegroundColor = ConsoleColor.White;
                 Console.WriteLine("Today, day " + (currentDay) + ", you made " + todaysIncome.ToString("C2") + ", for a profit of " + todaysProfit.ToString("C2") + "\nYou now have " + currentMoneyBalance.ToString("C2") + ", " + lemons + " lemons, " + sugar + " cups of sugar and your ice cubes melted. \nPress enter to continue to the next day, " + (daysOfSimulation - (currentDay)) + " days remain, including today.");
                 if(currentMoneyBalance < 2)

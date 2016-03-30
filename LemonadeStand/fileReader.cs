@@ -18,6 +18,7 @@ namespace LemonadeStand
         public string strTotalMoney;
         public string strDay;
         public string strDayLimit;
+        public string fileName;
         public string filepath = @"c:\users\dan dcc\documents\visual studio 2015\projects\lemonadestandproject\lemonadestand\";
         public List<int> getWeatherData()
         {
@@ -37,9 +38,25 @@ namespace LemonadeStand
             return weatherRetrieval;
         }
         
-        public void dataDecoder()
+        public double dataDecoder()
         {
-            using (StreamReader loadGame = new StreamReader(filepath + "gamestats.csv"))
+            Console.ForegroundColor = ConsoleColor.DarkGray;
+            Console.WriteLine("Please select the game folder in which your game was saved. 1, 2 or 3.");
+            int gameSlotNumber = int.Parse(Console.ReadLine());
+            if (gameSlotNumber.Equals(1))
+            {
+                fileName = "gamestats.csv";
+            }
+            else if(gameSlotNumber.Equals(2))
+            {
+                fileName = "gamestats2.csv";
+            }
+            else if (gameSlotNumber.Equals(3))
+            {
+                fileName = "gamestats3.csv";
+            }
+
+                using (StreamReader loadGame = new StreamReader(filepath + fileName))
             {
                 gameData = loadGame.ReadLine();
             }
@@ -50,6 +67,7 @@ namespace LemonadeStand
             strDayLimit = gameData2[2];
             strLemons = gameData2[3];
             strSugar = gameData2[4];
+            return gameSlotNumber;
         }
         public double getLemons()
         {

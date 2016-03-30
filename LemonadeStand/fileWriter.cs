@@ -9,19 +9,12 @@ namespace LemonadeStand
 {
     public class fileWriter
     {
-        //double balanceStorage;
-        //double lemonStorage;
-        //double sugarStorage;
-        //double dayStorage;
-        //double dayLimitStorage;
+        string fileName;
+        double gameSlot;
+        string saveChoice;
         string outputFile = @"C:\Users\Dan DCC\Documents\Visual Studio 2015\Projects\LemonadeStandProject\LemonadeStand\";
         public fileWriter(double balance, double currentDay, double dayLimit, double lemons, double sugar)
-        {
-            //balanceStorage = balance;
-            //dayStorage = currentDay;
-            //dayLimitStorage = dayLimit;
-            //lemonStorage = lemons;
-            //sugarStorage = sugar;            
+        {           
         }
         public void saveWeather(List<int> weatherInput)
         {
@@ -34,9 +27,21 @@ namespace LemonadeStand
                 }
             }
         }
-        public void todaysStats(double moneyTotals, double currentDay, double dayLimit, double lemons, double sugar)
+        public void todaysStats(double moneyTotals, double currentDay, double dayLimit, double lemons, double sugar,double slotChoice)
         {
-            using (StreamWriter saveGame = new StreamWriter(outputFile + "gameStats.csv"))
+            if (slotChoice.Equals(1))
+            {
+                fileName = "gameStats.csv";
+            }
+            else if (slotChoice.Equals(2))
+            {
+                fileName = "gameStats2.csv";
+            }
+            else if (slotChoice.Equals(3))
+            {
+                fileName = "gameStats3.csv";
+            }
+            using (StreamWriter saveGame = new StreamWriter(outputFile + fileName))
             {
                 string strMoneyTotals = moneyTotals.ToString();
                 string strDay = currentDay.ToString();
@@ -44,7 +49,30 @@ namespace LemonadeStand
                 string strLemons = lemons.ToString();
                 string strSugar = sugar.ToString();
                 saveGame.WriteLine("{0},{1},{2},{3},{4}{5}", strMoneyTotals, strDay, strDayLimit, strLemons, strSugar, Environment.NewLine);
+            }                        
+        }
+        public string newSave(string gameSave)
+        {
+            if (!gameSave.Equals("save"))
+            {
+                Console.ForegroundColor = ConsoleColor.Cyan;
+                Console.WriteLine("If you would like to save the game please type save now, otherwise press enter to continue.");
+                saveChoice = Console.ReadLine();
+                saveChoice = saveChoice.ToLower();
+                return saveChoice;
             }
+            else return gameSave;  
+        }
+        public double newSlot(string gameSave, double gameSlot)
+        {            
+            if (gameSave.Equals("save") && gameSlot.Equals(0))
+            {
+                Console.WriteLine("Please select a slot to save your game to. \nSlot 1, 2 or 3.");
+                gameSlot = double.Parse(Console.ReadLine());
+                return gameSlot;                
+            }
+            else
+            return gameSlot;
         }
     }
 }
