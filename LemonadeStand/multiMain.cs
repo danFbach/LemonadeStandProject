@@ -8,37 +8,84 @@ namespace LemonadeStand
 {
     public class multiMain
     {
-        public void multiplayerSim()
+        public List<int> weatherData;
+        public void multiplayerSim(int selection)
         {
-            //double p1Money;
-            //double p1Lemons;
-            //double p1Sugar;
-            //double p1Ice;
-            //double p1CupPrice;
-            //double p1Income;
-            //double p1LemonPackQty;
-            //double p1SugarPackQty;
-            //double p1IcePackQty;
-            //double p1Profit;
-            //double p1PitcherQty;
-                        
-            //double p2Money;
-            //double p2Lemons;
-            //double p2Sugar;
-            //double p2Ice;
-            //double p2CupPrice;
-            //double p2Income;
-            //double p2LemonPackQty;
-            //double p2SugarPackQty;
-            //double p2IcePackQty;
-            //double p2Profit;
-            //double p2PitcherQty;
+            double p1Money = 20;
+            double p1Lemons = 0;
+            double p1Sugar = 0;
+            double p1Ice = 0;
+            double p1CupPrice;
+            double p1Income;
+            double p1LemonPackQty;
+            double p1SugarPackQty;
+            double p1IcePackQty;
+            double p1Profit;
+            double p1PitcherQty;
+            double playerNumber1 = 1;
 
-            //int todaysWeather;
-            //int currentDay = 0;
+            double p2Money = 20;
+            double p2Lemons = 0;
+            double p2Sugar = 0;
+            double p2Ice = 0;
+            double p2CupPrice;
+            double p2Income;
+            double p2LemonPackQty;
+            double p2SugarPackQty;
+            double p2IcePackQty;
+            double p2Profit;
+            double p2PitcherQty;
+            double playerNumber2 = 2;
 
-            //weatherSim setWeather = new weatherSim();
+            int dayLimit;
+            int todaysWeather;
+            int currentDay = 0;
 
+            weatherSim setWeather = new weatherSim();
+            userInterface display = new userInterface();
+            buySupplies purchaseSupplies = new buySupplies();
+            day beginDayOfBusiness = new day();
+
+            dayLimit = beginDayOfBusiness.pickDayLimit();
+            weatherData = setWeather.largeScaleWeather(dayLimit);
+            todaysWeather = weatherData[currentDay];
+
+            for (; currentDay < dayLimit;)
+            {
+
+                //buy lemons p1
+                display.infoBar(p1Lemons, p1Sugar, p1Ice, p1Money, todaysWeather, currentDay, playerNumber1);
+                p1LemonPackQty = purchaseSupplies.purchaseSupplies(p1Lemons, p1Money, "lemons");
+                p1Money = purchaseSupplies.adjustMoneyBalanceOfPurchase(p1Money, p1LemonPackQty, "lemons");
+                p1Lemons = purchaseSupplies.ingredientTotal(p1LemonPackQty, p1Lemons, "lemons");
+                //buy sugar p1
+                display.infoBar(p1Lemons, p1Sugar, p1Ice, p1Money, todaysWeather, currentDay, playerNumber1);
+                p1SugarPackQty = purchaseSupplies.purchaseSupplies(p1Sugar, p1Money, "cups of sugar");
+                p1Money = purchaseSupplies.adjustMoneyBalanceOfPurchase(p1Money, p1SugarPackQty, "sugar");
+                p1Sugar = purchaseSupplies.ingredientTotal(p1SugarPackQty, p1Sugar, "sugar");
+                //buy ice p1
+                display.infoBar(p1Lemons, p1Sugar, p1Ice, p1Money, todaysWeather, currentDay, playerNumber1);
+                p1IcePackQty = purchaseSupplies.purchaseSupplies(p1Ice, p1Money, "ice cubes");
+                p1Money = purchaseSupplies.adjustMoneyBalanceOfPurchase(p1Money, p1IcePackQty, "ice");
+                p1Ice = purchaseSupplies.ingredientTotal(p1IcePackQty, p1Ice, "ice");
+
+                //buy lemons p2
+                display.infoBar(p2Lemons, p2Sugar, p2Ice, p2Money, todaysWeather, currentDay, playerNumber2);
+                p2LemonPackQty = purchaseSupplies.purchaseSupplies(p2Lemons, p2Money, "lemons");
+                p2Money = purchaseSupplies.adjustMoneyBalanceOfPurchase(p2Money, p2LemonPackQty, "lemons");
+                p2Lemons = purchaseSupplies.ingredientTotal(p2LemonPackQty, p2Lemons, "lemons");
+                //buy sugar p2
+                display.infoBar(p2Lemons, p2Sugar, p2Ice, p2Money, todaysWeather, currentDay, playerNumber2);
+                p2SugarPackQty = purchaseSupplies.purchaseSupplies(p2Sugar, p2Money, "cups of sugar");
+                p2Money = purchaseSupplies.adjustMoneyBalanceOfPurchase(p2Money, p2SugarPackQty, "sugar");
+                p2Sugar = purchaseSupplies.ingredientTotal(p2SugarPackQty, p2Sugar, "sugar");
+                //buy ice p2
+                display.infoBar(p2Lemons, p2Sugar, p2Ice, p2Money, todaysWeather, currentDay, playerNumber2);
+                p2IcePackQty = purchaseSupplies.purchaseSupplies(p2Ice, p2Money, "ice cubes");
+                p2Money = purchaseSupplies.adjustMoneyBalanceOfPurchase(p2Money, p2IcePackQty, "ice");
+                p2Ice = purchaseSupplies.ingredientTotal(p2IcePackQty, p2Ice, "ice");
+
+            }
 
 
 

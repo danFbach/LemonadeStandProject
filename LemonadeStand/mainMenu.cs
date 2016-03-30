@@ -11,13 +11,13 @@ namespace LemonadeStand
         int gameSelect;
         public void gameSelection()
         {
-            Game startGame = new Game();
+            multiMain startGame = new multiMain();
             Console.ForegroundColor = ConsoleColor.Red;
             Console.WriteLine("Hello player, would you like to...");
             Console.WriteLine("1. Start a new game?");
             Console.WriteLine("2. Load a previous game?");
             gameSelect = int.Parse(Console.ReadLine());
-            startGame.onePlayerGame(gameSelect);
+            startGame.multiplayerSim(gameSelect);
         }        
     }
 }

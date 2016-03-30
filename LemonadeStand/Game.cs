@@ -61,7 +61,7 @@ namespace LemonadeStand
                 currentMoneyBalance = retrieveGameData.getTotalMoney();
                 daysOfSimulation = retrieveGameData.getDayLimit();
                 currentDay = retrieveGameData.getDay();
-                display.infoBar(lemons, sugar, iceCubes, currentMoneyBalance, 0,currentDay);
+                display.infoBar(lemons, sugar, iceCubes, currentMoneyBalance, 0,currentDay,1);
                 gameSave = "save";
                 Console.ForegroundColor = ConsoleColor.White;
                 Console.WriteLine("\nThe previous game has loaded. It is day " + (currentDay + 1) + " and there are " + (daysOfSimulation - currentDay) + " days left, including today. \nPress enter to continue.");
@@ -76,31 +76,31 @@ namespace LemonadeStand
                 todaysWeatherForecast = weatherData[currentDay];
                 numberOfPotentialCustomers = simulateWeather.weatherReport(todaysWeatherForecast);
                 //buy lemons
-                display.infoBar(lemons, sugar, iceCubes, currentMoneyBalance, todaysWeatherForecast, currentDay);
+                display.infoBar(lemons, sugar, iceCubes, currentMoneyBalance, todaysWeatherForecast, currentDay,1);
                 packsOfLemonsPurchased = purchaseSupplies.purchaseSupplies(lemons, currentMoneyBalance, "lemons");
                 currentMoneyBalance = purchaseSupplies.adjustMoneyBalanceOfPurchase(currentMoneyBalance, packsOfLemonsPurchased, "lemons");
                 lemons = purchaseSupplies.ingredientTotal(packsOfLemonsPurchased, lemons, "lemons");
                 //buy sugar
-                display.infoBar(lemons, sugar, iceCubes, currentMoneyBalance, todaysWeatherForecast, currentDay);
+                display.infoBar(lemons, sugar, iceCubes, currentMoneyBalance, todaysWeatherForecast, currentDay,1);
                 packsOfSugarPurchased = purchaseSupplies.purchaseSupplies(sugar, currentMoneyBalance, "cups of sugar");
                 sugar = purchaseSupplies.ingredientTotal(packsOfSugarPurchased, sugar, "sugar");
                 currentMoneyBalance = purchaseSupplies.adjustMoneyBalanceOfPurchase(currentMoneyBalance, packsOfSugarPurchased, "sugar");
                 //buy ice
-                display.infoBar(lemons, sugar, iceCubes, currentMoneyBalance, todaysWeatherForecast, currentDay);
+                display.infoBar(lemons, sugar, iceCubes, currentMoneyBalance, todaysWeatherForecast, currentDay,1);
                 packsOfIcePurchased = purchaseSupplies.purchaseSupplies(iceCubes, currentMoneyBalance, "ice cubes");
                 iceCubes = purchaseSupplies.ingredientTotal(packsOfIcePurchased, iceCubes, "ice");
                 currentMoneyBalance = purchaseSupplies.adjustMoneyBalanceOfPurchase(currentMoneyBalance, packsOfIcePurchased, "ice");
                 //make pitchers
-                display.infoBar(lemons, sugar, iceCubes, currentMoneyBalance, todaysWeatherForecast, currentDay);
+                display.infoBar(lemons, sugar, iceCubes, currentMoneyBalance, todaysWeatherForecast, currentDay,1);
                 customRecipe = pitcherInteraction.makeARecipe();
-                display.infoBar(lemons, sugar, iceCubes, currentMoneyBalance, todaysWeatherForecast, currentDay);
+                display.infoBar(lemons, sugar, iceCubes, currentMoneyBalance, todaysWeatherForecast, currentDay,1);
                 numberPitchersToMake = pitcherInteraction.selectPitchers(lemons, sugar, iceCubes);
                 //subtract ingredients based on pitcher order
                 lemons = pitcherInteraction.calcIngredients(lemons, numberPitchersToMake, "lemons");
                 sugar = pitcherInteraction.calcIngredients(sugar, numberPitchersToMake, "sugar");
                 iceCubes = pitcherInteraction.calcIngredients(iceCubes, numberPitchersToMake, "ice");
                 //price/cup set
-                display.infoBar(lemons, sugar, iceCubes, currentMoneyBalance, todaysWeatherForecast, currentDay);
+                display.infoBar(lemons, sugar, iceCubes, currentMoneyBalance, todaysWeatherForecast, currentDay,1);
                 todaysCupPrice = beginDayOfBusiness.setPricePerCup();
                 beginDayOfBusiness.makeTodaysCustomers(numberOfPotentialCustomers);
                 //sim a day

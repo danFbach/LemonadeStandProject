@@ -8,9 +8,11 @@ namespace LemonadeStand
 {
     public class userInterface
     {
-        public void infoBar(double lemonCount, double sugarCount, double iceCount, double money, double todayWeather, double currentDay)
+        public void infoBar(double lemonCount, double sugarCount, double iceCount, double money, double todayWeather, double currentDay, double player)
         {
             Console.Clear();
+            Console.ForegroundColor = ConsoleColor.White;
+            Console.Write("Player " + player + " | ");
             Console.ForegroundColor = ConsoleColor.Magenta;
             Console.Write(" Day " + (currentDay + 1) + " | ");
             Console.ForegroundColor = ConsoleColor.Green;
