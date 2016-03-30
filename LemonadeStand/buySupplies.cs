@@ -13,48 +13,81 @@ namespace LemonadeStand
         double sugarPack = 16;
         double icePack = 60;
         double lemonPackPrice = 2.50;
-        double sugarPackPrice = 3.50;
+        double sugarPackPrice = 2.50;
         double icePackPrice = 1.75;
         double itemPackPrice;
         double itemPackQty;
+        string fillIn;
 
 
         public void storeFront(double lemonCount, double sugarCount, double iceCount, double money)
         {
-            Console.ForegroundColor = ConsoleColor.Green;
-            Console.WriteLine("Welcome to the lemonade store, we carry everything the lemonade industry might need. Lemons, Sugar and Ice.");
-            Console.WriteLine("Money: " + money.ToString("C2") + " Lemons: " + lemonCount + " Sugar: " + sugarCount + " Icecubes: " + iceCount);
+            Console.ForegroundColor = ConsoleColor.White;
+            Console.WriteLine("Welcome to the lemonade store, we carry everything the lemonade industry needs.");
         }
         public double purchaseSupplies(double itemQty, double money, string itemType)
         {
+            Console.ForegroundColor = ConsoleColor.Red;
+            double ingredientPurchaseQty = 0;
+            string supplyChoice;
+            Console.Write("You have ");
             if (itemType.Equals("lemons"))
             {
                 itemPackPrice = lemonPackPrice;
                 itemPackQty = lemonPack;
+                Console.ForegroundColor = ConsoleColor.Yellow;
             }
             else if (itemType.Equals("cups of sugar"))
             {
                 itemPackPrice = sugarPackPrice;
                 itemPackQty = sugarPack;
+                Console.ForegroundColor = ConsoleColor.White;
             }
             else if (itemType.Equals("ice cubes"))
             {
                 itemPackPrice = icePackPrice;
                 itemPackQty = icePack;
+                Console.ForegroundColor = ConsoleColor.Cyan;
             }
-            double ingredientPurchaseQty = 0;
-            string supplyChoice;
-            Console.WriteLine("You have " + itemQty + " " + itemType + ", would you like to buy more? (Y/N)");
+            Console.Write(itemQty + " " + itemType);
+            Console.ForegroundColor = ConsoleColor.Red;
+            Console.WriteLine(", would you like to buy more? (Y/N)");
             supplyChoice = Console.ReadLine();
             supplyChoice = supplyChoice.ToLower();
             if (supplyChoice.Equals("y"))
             {
-                Console.WriteLine(itemPackPrice.ToString("C2") + " for " + itemPackQty + " " + itemType + "! You currently have " + money.ToString("C2") + ". Please enter how many packs you would like.");
-                bool check = double.TryParse(Console.ReadLine(), out ingredientPurchaseQty);
-                while(check == false)
+                
+                Console.ForegroundColor = ConsoleColor.Green;
+                Console.Write(itemPackPrice.ToString("C2"));
+
+                if (itemType.Equals("lemons"))
                 {
+                    Console.ForegroundColor = ConsoleColor.Yellow;
+                    fillIn = " packs of ";
+                }
+                else if (itemType.Equals("cups of sugar"))
+                {
+                    Console.ForegroundColor = ConsoleColor.White;
+                    fillIn = " ";
+                }
+                else if(itemType.Equals("ice cubes"))
+                {
+                    Console.ForegroundColor = ConsoleColor.Cyan;
+                    fillIn = " bags of ";
+                }
+                Console.Write(" for " + itemPackQty + " " + itemType);
+                Console.ForegroundColor = ConsoleColor.Red; Console.Write("! You currently have ");
+                Console.ForegroundColor = ConsoleColor.Green; Console.WriteLine(money.ToString("C2"));
+                Console.ForegroundColor = ConsoleColor.Red; Console.WriteLine("Please enter how many packs you would like.");
+                bool check = double.TryParse(Console.ReadLine(), out ingredientPurchaseQty);
+                if(check.Equals(false)) { return purchaseSupplies(itemQty, money, itemType); }  
+                if((money - (ingredientPurchaseQty*itemPackPrice)) < 0)
+                {
+                    Console.WriteLine("You do not have enough money to buy " + ingredientPurchaseQty + fillIn + itemType + ".");
                     return purchaseSupplies(itemQty, money, itemType);
-                }                    
+                }                  
+
+
             }return ingredientPurchaseQty;
         }
         //ingredient calc
@@ -77,14 +110,24 @@ namespace LemonadeStand
             return productCount;
         }
         //money calc
-        public double moneyBalanceAdjustment(double userBalance, double lemonsPurchased, double sugarPurchased, double icePurchased)
+        public double adjustMoneyBalanceOfPurchase(double userBalance, double numberPurchased, string type)
         {
-            double priceLemons = 2.50;
-            double priceSugar = 3;
-            double priceIce = 1.50;
-            userBalance -= (lemonsPurchased * priceLemons);
-            userBalance -= (sugarPurchased * priceSugar);
-            userBalance -= (icePurchased * priceIce);
+            double itemPrice = 0;
+
+            if (type.Equals("lemons"))
+            {
+                itemPrice = lemonPackPrice;
+            }
+            else if (type.Equals("sugar"))
+            {
+                itemPrice = sugarPackPrice;
+            }
+            else if(type.Equals("ice"))
+            {
+                itemPrice = icePackPrice;
+            }
+
+            userBalance -= (numberPurchased * itemPrice);
             return userBalance;
         }
     }

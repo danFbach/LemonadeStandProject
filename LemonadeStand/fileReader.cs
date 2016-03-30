@@ -45,13 +45,11 @@ namespace LemonadeStand
             }
             char delimiter = ',';
             string[] gameData2 = gameData.Split(delimiter);
-            strDay = gameData2[0];
-            strTotalMoney = gameData2[1];
-            strProfit = gameData2[2];
-            strIncome = gameData2[3];
-            strLemons = gameData2[4];
-            strSugar = gameData2[5];
-            strDayLimit = gameData2[6];
+            strTotalMoney = gameData2[0];
+            strDay = gameData2[1];
+            strDayLimit = gameData2[2];
+            strLemons = gameData2[3];
+            strSugar = gameData2[4];
         }
         public double getLemons()
         {

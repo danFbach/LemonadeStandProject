@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
+using System.Threading;
 
 namespace LemonadeStand
 {
@@ -16,8 +16,8 @@ namespace LemonadeStand
         public customer(int cash)
         {
             cashClass = cash;
-            tipper = tipping.Next(1, 5);
-
+            tipper = tipping.Next(1, 6);
+            Thread.Sleep(5);
             int randName = name.Next(1, 11);
             if (randName.Equals(1))
             {

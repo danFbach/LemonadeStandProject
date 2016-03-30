@@ -6,6 +6,7 @@ using System.Threading;
 
 namespace LemonadeStand
 {
+
     public class day
     {
         public double income = 0;
@@ -13,7 +14,8 @@ namespace LemonadeStand
         public Random setCashClass = new Random();
         public Random buyOrNot = new Random();
         public double buyChance;
-        public List<customer> makeNewCustomers(double customerLimit)
+        public bool check;
+        public List<customer> makeTodaysCustomers(double customerLimit)
         {
             for (int customerNum = 0; customerNum < customerLimit; customerNum++)
             {
@@ -22,38 +24,45 @@ namespace LemonadeStand
             }
             return potentialCustomers;
         }
-        public double pricePerCup()
+        
+        public double setPricePerCup()
         {
+            Console.BackgroundColor = ConsoleColor.Black;
+            Console.ForegroundColor = ConsoleColor.White;
             double price;
             Console.WriteLine("What would you like your price per cup to be today?");
-            price = double.Parse(Console.ReadLine());
+            check = double.TryParse(Console.ReadLine(),out price);
+            if (check.Equals(false)){ return setPricePerCup(); }
             if (price > 1)
             {
                 price = price / 100;
             }
-            Console.WriteLine("Great, you will be selling your lemonade for " + price.ToString("C2"));
+            Console.Write("Great, you will be selling your lemonade for ");
+            Console.ForegroundColor = ConsoleColor.Green;
+            Console.WriteLine(price.ToString("C2"));
+            Console.ForegroundColor = ConsoleColor.Red;
             Console.WriteLine("Press enter to begin the day of selling.");
             Console.ReadKey();
             return price;
         }
         public double daySim(double pitcherQty, double cupPrice)
         {
-            Console.ForegroundColor = ConsoleColor.DarkMagenta;
             double cupQty = pitcherQty * 8;
             double income = 0;
             double cupPriceLimit = 0;
             double tip;
+            double potentialCount = potentialCustomers.Count;
+            double actualCount = 0;
             foreach (customer person in potentialCustomers)
             {
+                
                 tip = 0;
                 Thread.Sleep(20);
                 if (cupQty > 0)
                 {
                     if (person.cashClass.Equals(1))
                     {
-                        cupQty -= 1;
-                        income += cupPrice;
-                        Console.WriteLine(person.customerName + " bought a cup!" + " You now have " + income.ToString("C2") + " and " + cupQty + " cups of lemonade remaining.");
+                        cupPriceLimit = 1;
                     }
                     else if (person.cashClass.Equals(2))
                     {
@@ -88,28 +97,37 @@ namespace LemonadeStand
                         if (person.tipper.Equals(3))
                         {
                             tip = .15;
+                            cupQty -= 1;
+                            income += cupPrice + tip;
+                            Console.ForegroundColor = ConsoleColor.Green;
+                            Console.Write("Money: " + income.ToString("C2"));
+                            Console.WriteLine(" " + person.customerName + " bought a cup and gave you a " + tip.ToString("C2") + " tip! You have "+ cupQty + " cups of lemonade left.");
                         }
                         else if (person.tipper.Equals(2))
                         {
                             tip = .05;
-                        }
-                        if (tip > 0)
-                        {
                             cupQty -= 1;
                             income += cupPrice + tip;
-                            Console.WriteLine(person.customerName + " bought a cup and gave you a " + tip.ToString("C2") + " tip! You now have " + income.ToString("C2") + " and " + cupQty + " cups of lemonade remaining.");
-                        }
-                        else if(tip.Equals(0))
+                            Console.ForegroundColor = ConsoleColor.Green;
+                            Console.Write("Money: " + income.ToString("C2"));
+                            Console.ForegroundColor = ConsoleColor.Yellow;
+                            Console.WriteLine(" " +person.customerName + " bought a cup and gave you a " + tip.ToString("C2") + " tip! You have " + cupQty + " cups of lemonade left.");
+                        }                    
+                        else
                         {
                             cupQty -= 1;
                             income += cupPrice;
-                            Console.WriteLine(person.customerName + " bought a cup!" + " You now have " + income.ToString("C2") + " and " + cupQty + " cups of lemonade remaining.");
+                            Console.ForegroundColor = ConsoleColor.Green;
+                            Console.Write("Money: " + income.ToString("C2"));
+                            Console.ForegroundColor = ConsoleColor.White;
+                            Console.WriteLine(" " + person.customerName + " bought a cup!" + " You have " + cupQty + " cups of lemonade left.");
                         }
+                        actualCount++;
                     }
                     
                 }
-            }
-            Console.WriteLine("Feel free to look at what your customers bought today, press enter to continue.");
+            }Console.ForegroundColor = ConsoleColor.Magenta;
+            Console.WriteLine("Of the " + potentialCount + " potential customers, you were able to sell to " + actualCount + " people today. \nFeel free to look at what your customers bought today. \nWhen you're finished, press enter to continue.");
             return income;
         }
     }

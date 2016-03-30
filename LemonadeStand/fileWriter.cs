@@ -9,26 +9,22 @@ namespace LemonadeStand
 {
     public class fileWriter
     {
-        StringBuilder csv = new StringBuilder();
-        weatherSim save = new weatherSim();
-        double income2;
-        double balance2;
-        double dailyProfit;
-        double day;
+        //double balanceStorage;
+        //double lemonStorage;
+        //double sugarStorage;
+        //double dayStorage;
+        //double dayLimitStorage;
         string outputFile = @"C:\Users\Dan DCC\Documents\Visual Studio 2015\Projects\LemonadeStandProject\LemonadeStand\";
-        public List<fileWriter> finances = new List<fileWriter>();
-
-        
-        public fileWriter(double income, double balance, double profit, double currentDay)
+        public fileWriter(double balance, double currentDay, double dayLimit, double lemons, double sugar)
         {
-            income2 = income;
-            balance2 = balance;
-            dailyProfit = profit;
-            day = currentDay + 1;
+            //balanceStorage = balance;
+            //dayStorage = currentDay;
+            //dayLimitStorage = dayLimit;
+            //lemonStorage = lemons;
+            //sugarStorage = sugar;            
         }
         public void saveWeather(List<int> weatherInput)
         {
-            
             using (StreamWriter weather = new StreamWriter(outputFile + "weather.csv"))
             {
                 foreach (int weatherInt in weatherInput)
@@ -38,22 +34,17 @@ namespace LemonadeStand
                 }
             }
         }
-
-        public void saveStats(double dailyIncome, double moneyTotals, double profits, double lemons, double sugar, double day, double dayLimit)
+        public void todaysStats(double moneyTotals, double currentDay, double dayLimit, double lemons, double sugar)
         {
-            finances.Add(new fileWriter(dailyIncome, moneyTotals, profits, day));
-            using(StreamWriter saveGame = new StreamWriter(outputFile+"gameStats.csv"))
+            using (StreamWriter saveGame = new StreamWriter(outputFile + "gameStats.csv"))
             {
-                day += 1;
-                string strDailyIncome = dailyIncome.ToString();
                 string strMoneyTotals = moneyTotals.ToString();
-                string strProfits = profits.ToString();
+                string strDay = currentDay.ToString();
+                string strDayLimit = dayLimit.ToString();
                 string strLemons = lemons.ToString();
                 string strSugar = sugar.ToString();
-                string strDay = day.ToString();
-                string strDayLimit = dayLimit.ToString();
-                saveGame.WriteLine("{0},{1},{2},{3},{4},{5},{6}{7}", strDay, strMoneyTotals, strProfits, strDailyIncome, strLemons, strSugar, strDayLimit, Environment.NewLine);
-            }                      
+                saveGame.WriteLine("{0},{1},{2},{3},{4}{5}", strMoneyTotals, strDay, strDayLimit, strLemons, strSugar, Environment.NewLine);
+            }
         }
     }
 }

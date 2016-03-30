@@ -26,35 +26,29 @@ namespace LemonadeStand
             Random customers = new Random();
             int weatherRand;
             weatherRand = todaysWeather;
-            Console.ForegroundColor = ConsoleColor.Yellow;
-            Console.WriteLine("It's a new day to sell lemonade and the weather today will be...");
+            Console.ForegroundColor = ConsoleColor.Red;
             if (weatherRand.Equals(1))
             {
-                Console.WriteLine("...Cold and there will be thunderstorms, a very poor day to be a lemonade stand entrepenuer.");
-                aCustomer = customers.Next(1, 75);
+                aCustomer = customers.Next(1, 26);
                 return aCustomer;
             }
             else if (weatherRand.Equals(2))
             {
-                Console.WriteLine("...Cool and and drizzling rain. You'll probably get a few customers today.");
-                aCustomer = customers.Next(10, 80);
+                aCustomer = customers.Next(5, 31);
                 return aCustomer;
             }
             else if (weatherRand.Equals(3))
             {
-                Console.WriteLine("...Warm, but hazy. A decent number of people should buy some today.");
-                aCustomer = customers.Next(20, 80);
+                aCustomer = customers.Next(10, 56);
                 return aCustomer;
             }
             else if (weatherRand.Equals(4))
             {
-                Console.WriteLine("70 to 80 degrees out and partly cloudy. It should be a good day to sell some lemonade!");
-                aCustomer = customers.Next(40, 85);
+                aCustomer = customers.Next(30, 86);
                 return aCustomer;
             }
             else if (weatherRand.Equals(5))
             {
-                Console.WriteLine("90 and not a cloud in the sky! better stock up on supplies!");
                 aCustomer = customers.Next(40, 101);
                 return aCustomer;
             }

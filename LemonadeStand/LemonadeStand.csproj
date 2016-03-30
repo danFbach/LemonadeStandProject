@@ -54,6 +54,7 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="buySupplies.cs" />
+    <Compile Include="userInterface.cs" />
     <Compile Include="weatherSim.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -12,6 +12,7 @@ namespace LemonadeStand
         int gameSelect;
         public int gameSelection()
         {
+            Console.ForegroundColor = ConsoleColor.Red;
             Console.WriteLine("Hello player, would you like to...");
             Console.WriteLine("1. Start a new game?");
             Console.WriteLine("2. Load the previous game?");
@@ -20,6 +21,7 @@ namespace LemonadeStand
         }
         public int pickDayLimit()
         {
+            Console.ForegroundColor = ConsoleColor.White;
             Console.WriteLine("How many weeks will we run the simulation, 1, 2 or 3?");
             dayLimit = int.Parse(Console.ReadLine());
             switch (dayLimit)
