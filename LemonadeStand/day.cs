@@ -161,6 +161,7 @@ namespace LemonadeStand
                 }
             }Console.ForegroundColor = ConsoleColor.Magenta;
             Console.WriteLine("Of the " + potentialCount + " potential customers, you were able to sell to " + actualCount + " people today. You sold a second cup to " + secondCup + " people. \nFeel free to look at what your customers bought today.");
+            Console.ReadKey();
             return income;
         }
     }

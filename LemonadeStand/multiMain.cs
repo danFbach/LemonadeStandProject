@@ -12,6 +12,7 @@ namespace LemonadeStand
         public void multiplayerSim(int selection)
         {
             double p1Money = 20;
+            double p1StartMoney;
             double p1Lemons = 0;
             double p1Sugar = 0;
             double p1Ice = 0;
@@ -26,6 +27,7 @@ namespace LemonadeStand
             string p1Recipe = "";
 
             double p2Money = 20;
+            double p2StartMoney;
             double p2Lemons = 0;
             double p2Sugar = 0;
             double p2Ice = 0;
@@ -40,6 +42,7 @@ namespace LemonadeStand
             string p2Recipe = "";
 
             double potentialCustomers;
+            double meltIce = 0;
             int dayLimit;
             int todaysWeather;
             int currentDay = 0;
@@ -56,6 +59,8 @@ namespace LemonadeStand
 
             for (; currentDay < dayLimit;)
             {
+                p1StartMoney = p1Money;
+                p2StartMoney = p2Money;
                 potentialCustomers = setWeather.weatherReport(todaysWeather);
                 //buy lemons p1
                 display.infoBar(p1Lemons, p1Sugar, p1Ice, p1Money, todaysWeather, currentDay, playerNumber1);
@@ -72,7 +77,6 @@ namespace LemonadeStand
                 p1IcePackQty = purchaseSupplies.purchaseSupplies(p1Ice, p1Money, "ice cubes");
                 p1Money = purchaseSupplies.adjustMoneyBalanceOfPurchase(p1Money, p1IcePackQty, "ice");
                 p1Ice = purchaseSupplies.ingredientTotal(p1IcePackQty, p1Ice, "ice");
-
                 //buy lemons p2
                 display.infoBar(p2Lemons, p2Sugar, p2Ice, p2Money, todaysWeather, currentDay, playerNumber2);
                 p2LemonPackQty = purchaseSupplies.purchaseSupplies(p2Lemons, p2Money, "lemons");
@@ -90,31 +94,42 @@ namespace LemonadeStand
                 p2Ice = purchaseSupplies.ingredientTotal(p2IcePackQty, p2Ice, "ice");
                 //pitcher p1
                 display.infoBar(p1Lemons, p1Sugar, p1Ice, p1Money, todaysWeather, currentDay, playerNumber1);
-                p1Recipe = pitcherInteraction.makeARecipe();
+                p1Recipe = pitcherInteraction.makeARecipe(playerNumber1);
                 display.infoBar(p1Lemons, p1Sugar, p1Ice, p1Money, todaysWeather, currentDay, playerNumber1);
-                p1PitcherQty = pitcherInteraction.selectPitchers(p1Lemons, p1Sugar, p1Ice);
-                p1Lemons = pitcherInteraction.calcIngredients(p1Lemons, p1PitcherQty, "lemons");
-                p1Sugar = pitcherInteraction.calcIngredients(p1Sugar, p1PitcherQty, "sugar");
-                p1Ice = pitcherInteraction.calcIngredients(p1Ice, p1PitcherQty, "ice");
+                p1PitcherQty = pitcherInteraction.selectPitchers(p1Lemons, p1Sugar, p1Ice, playerNumber1);
+                p1Lemons = pitcherInteraction.calcIngredients(p1Lemons, p1PitcherQty, "lemons", playerNumber1);
+                p1Sugar = pitcherInteraction.calcIngredients(p1Sugar, p1PitcherQty, "sugar", playerNumber1);
+                p1Ice = pitcherInteraction.calcIngredients(p1Ice, p1PitcherQty, "ice", playerNumber1);
                 //pitcher p2
                 display.infoBar(p2Lemons, p2Sugar, p2Ice, p2Money, todaysWeather, currentDay, playerNumber2);
-                p2Recipe = pitcherInteraction.makeARecipe();
+                p2Recipe = pitcherInteraction.makeARecipe(playerNumber2);
                 display.infoBar(p2Lemons, p2Sugar, p2Ice, p2Money, todaysWeather, currentDay, playerNumber2);
-                p2PitcherQty = pitcherInteraction.selectPitchers(p2Lemons, p2Sugar, p2Ice);
-                p2Lemons = pitcherInteraction.calcIngredients(p2Lemons, p2PitcherQty, "lemons");
-                p2Sugar = pitcherInteraction.calcIngredients(p2Sugar, p2PitcherQty, "sugar");
-                p2Ice = pitcherInteraction.calcIngredients(p2Ice, p2PitcherQty, "ice");
+                p2PitcherQty = pitcherInteraction.selectPitchers(p2Lemons, p2Sugar, p2Ice, playerNumber2);
+                p2Lemons = pitcherInteraction.calcIngredients(p2Lemons, p2PitcherQty, "lemons", playerNumber2);
+                p2Sugar = pitcherInteraction.calcIngredients(p2Sugar, p2PitcherQty, "sugar", playerNumber2);
+                p2Ice = pitcherInteraction.calcIngredients(p2Ice, p2PitcherQty, "ice", playerNumber2);
+                //make customers
+                beginDayOfBusiness.makeTodaysCustomers(potentialCustomers);
                 //price p1
                 display.infoBar(p1Lemons, p1Sugar, p1Ice, p1Money, todaysWeather, currentDay, playerNumber1);
                 p1CupPrice = beginDayOfBusiness.setPricePerCup();
+                p1Income = beginDayOfBusiness.daySim(p1PitcherQty, p1CupPrice, p1Recipe);
                 //price p2
                 display.infoBar(p2Lemons, p2Sugar, p2Ice, p2Money, todaysWeather, currentDay, playerNumber2);
                 p2CupPrice = beginDayOfBusiness.setPricePerCup();
-
-                beginDayOfBusiness.makeTodaysCustomers(potentialCustomers);
-
-                p1Income = beginDayOfBusiness.daySim(p1PitcherQty, p1CupPrice, p1Recipe);
                 p2Income = beginDayOfBusiness.daySim(p2PitcherQty, p2CupPrice, p2Recipe);
+                //a wee bit of math
+                p1Profit = 0;
+                p1Money += p1Income;
+                p1Profit = p1Money - p1StartMoney;
+                p1Ice = meltIce;
+                p2Profit = 0;
+                p2Money += p2Income;
+                p2Profit = p2Money - p2StartMoney;
+                p2Ice = meltIce;
+
+                currentDay += 1;
+                display.playerStatComparison(p1Profit, p1Income, p1Money, p2Profit, p2Income, p2Money);
 
             }
 

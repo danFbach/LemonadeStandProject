@@ -92,13 +92,13 @@ namespace LemonadeStand
                 currentMoneyBalance = purchaseSupplies.adjustMoneyBalanceOfPurchase(currentMoneyBalance, packsOfIcePurchased, "ice");
                 //make pitchers
                 display.infoBar(lemons, sugar, iceCubes, currentMoneyBalance, todaysWeatherForecast, currentDay,1);
-                customRecipe = pitcherInteraction.makeARecipe();
+                customRecipe = pitcherInteraction.makeARecipe(1);
                 display.infoBar(lemons, sugar, iceCubes, currentMoneyBalance, todaysWeatherForecast, currentDay,1);
-                numberPitchersToMake = pitcherInteraction.selectPitchers(lemons, sugar, iceCubes);
+                numberPitchersToMake = pitcherInteraction.selectPitchers(lemons, sugar, iceCubes,1);
                 //subtract ingredients based on pitcher order
-                lemons = pitcherInteraction.calcIngredients(lemons, numberPitchersToMake, "lemons");
-                sugar = pitcherInteraction.calcIngredients(sugar, numberPitchersToMake, "sugar");
-                iceCubes = pitcherInteraction.calcIngredients(iceCubes, numberPitchersToMake, "ice");
+                lemons = pitcherInteraction.calcIngredients(lemons, numberPitchersToMake, "lemons",1);
+                sugar = pitcherInteraction.calcIngredients(sugar, numberPitchersToMake, "sugar",1);
+                iceCubes = pitcherInteraction.calcIngredients(iceCubes, numberPitchersToMake, "ice",1);
                 //price/cup set
                 display.infoBar(lemons, sugar, iceCubes, currentMoneyBalance, todaysWeatherForecast, currentDay,1);
                 todaysCupPrice = beginDayOfBusiness.setPricePerCup();

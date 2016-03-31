@@ -54,5 +54,33 @@ namespace LemonadeStand
                 Console.WriteLine(@"90 - Clear Skies!");
             }
         }
+        public void playerStatComparison(double p1Profit, double p1Income, double p1Money, double p2Profit, double p2Income, double p2Money)
+        {
+            Console.ForegroundColor = ConsoleColor.White;
+            Console.Write("Player 1 made ");
+            Console.ForegroundColor = ConsoleColor.Green;
+            Console.Write(p1Income.ToString("C2"));
+            Console.ForegroundColor = ConsoleColor.White;
+            Console.Write(" for a profit of ");
+            Console.ForegroundColor = ConsoleColor.Green;
+            Console.Write(p1Profit.ToString("C2"));
+            Console.ForegroundColor = ConsoleColor.White;
+            Console.Write("Bringing their total money to ");
+            Console.ForegroundColor = ConsoleColor.Green;
+            Console.WriteLine(p1Money.ToString("C2"));
+            Console.ForegroundColor = ConsoleColor.White;
+            Console.Write("Player 2 made ");
+            Console.ForegroundColor = ConsoleColor.Green;
+            Console.Write(p2Income.ToString("C2"));
+            Console.ForegroundColor = ConsoleColor.White;
+            Console.Write(" for a profit of ");
+            Console.ForegroundColor = ConsoleColor.Green;
+            Console.Write(p2Profit.ToString("C2"));
+            Console.ForegroundColor = ConsoleColor.White;
+            Console.Write("Bringing their total money to ");
+            Console.ForegroundColor = ConsoleColor.Green;
+            Console.WriteLine(p2Money.ToString("C2"));
+            Console.ReadKey();
+        }
     }
 }
