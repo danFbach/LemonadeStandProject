@@ -50,7 +50,7 @@ namespace LemonadeStand
             }
             else if (randName.Equals(6))
             {
-                customerName = "Ally";
+                customerName = "Berry";
             }
             else if (randName.Equals(7))
             {

@@ -40,6 +40,10 @@ namespace LemonadeStand
             {
                 fileName = "gameStats3.csv";
             }
+            else
+            {
+                return;
+            }
             using (StreamWriter saveGame = new StreamWriter(outputFile + fileName))
             {
                 string strMoneyTotals = moneyTotals.ToString();

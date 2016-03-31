@@ -70,7 +70,6 @@ namespace LemonadeStand
 
             for (; currentDay < daysOfSimulation;)
             {
-
                 startOfDayMoney = currentMoneyBalance;
                 //daily weather
                 todaysWeatherForecast = weatherData[currentDay];
