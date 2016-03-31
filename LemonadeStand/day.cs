@@ -40,11 +40,13 @@ namespace LemonadeStand
         }
         public List<customer> makeTodaysCustomers(double customerLimit)
         {
+            Console.Write("Generating todays customers.");
             potentialCustomers.Clear();
             for (int customerNum = 0; customerNum < customerLimit; customerNum++)
             {
                 potentialCustomers.Add(new customer(setCashClass.Next(1, 9)));
                 Thread.Sleep(10);
+                Console.Write(".");
             }
             return potentialCustomers;
         }
@@ -74,6 +76,7 @@ namespace LemonadeStand
         }
         public double daySim(double pitcherQty, double cupPrice, string customRecipe)
         {
+            Console.WriteLine();
             double cupQty = pitcherQty * 8;
             double income = 0;
             double cupPriceLimit = 0;

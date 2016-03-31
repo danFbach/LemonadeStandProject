@@ -37,7 +37,7 @@ namespace LemonadeStand
             int todaysWeatherForecast;
             int daysOfSimulation = 0;
             int currentDay = 0;
-            int consWidth = 100;
+            int consWidth = 110;
             int consHeight = Console.WindowHeight;
             string customRecipe;
             string gameSave = "";

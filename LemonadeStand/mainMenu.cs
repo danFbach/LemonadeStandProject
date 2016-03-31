@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace LemonadeStand
 {
     public class mainMenu
-    { 
+    {
         int gameSelect;
         int gameType;
         bool check;
@@ -38,7 +38,6 @@ namespace LemonadeStand
                 if (check.Equals(false)) { gameSelection(); Console.WriteLine("Invalid entry."); }
                 startGame.multiplayerSim(gameSelect);
             }
-            
-        }        
+        }
     }
 }

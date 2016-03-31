@@ -47,7 +47,7 @@ namespace LemonadeStand
             int dayLimit = 0;
             int todaysWeather = 0;
             int currentDay = 0;
-            int consWidth = 100;
+            int consWidth = 110;
             int consHeight = Console.WindowHeight;
             Console.SetWindowSize(consWidth, consHeight);
 
@@ -62,12 +62,14 @@ namespace LemonadeStand
 
             if (gameSelection.Equals(1))
             {
+                //generate new game data
                 dayLimit = beginDayOfBusiness.pickDayLimit();
                 weatherData = setWeather.largeScaleWeather(dayLimit);
                 saveGame.saveWeather(weatherData, slotChoice);
             }
             else if (gameSelection.Equals(2))
             {
+                //import game data if selected
                 weatherData = retrieveGame.getWeatherData(slotChoice);
                 retrieveGame.multiplayerDecoder();
                 currentDay = retrieveGame.getDayMulti();
