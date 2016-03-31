@@ -15,6 +15,7 @@ namespace LemonadeStand
         singleMain startSinglePlayer = new singleMain();
         public void gameSelection()
         {
+            Console.ForegroundColor = ConsoleColor.White;
             Console.WriteLine("Would you like to\n(1) Play single player?\n(2) Play multi player");
             check = int.TryParse(Console.ReadLine(), out gameType);
             if (check.Equals(false)) { gameSelection(); Console.WriteLine("Invalid entry."); }
@@ -38,6 +39,7 @@ namespace LemonadeStand
                 if (check.Equals(false)) { gameSelection(); Console.WriteLine("Invalid entry."); }
                 startGame.multiplayerSim(gameSelect);
             }
+            else { gameSelection(); }
         }
     }
 }

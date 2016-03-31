@@ -80,6 +80,10 @@ namespace LemonadeStand
                 {
                     return "sweet";
                 }
+                else if(sugarPer < 4)
+                {
+                    return "dull";
+                }
                 else if (icePer > 15)
                 {
                     return "watery";

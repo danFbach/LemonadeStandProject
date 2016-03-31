@@ -75,18 +75,18 @@ namespace LemonadeStand
         public double daySim(double pitcherQty, double cupPrice, string customRecipe)
         {
             Console.WriteLine();
-            double cupQty = pitcherQty * 8;
+            double availableCupQty = pitcherQty * 8;
             double income = 0;
             double cupPriceLimit = 0;
             double tip;
             double potentialCount = potentialCustomers.Count;
             double actualCount = 0;
-            double secondCup = 0;
+            double secondCupCount = 0;
             foreach (customer person in potentialCustomers)
             {                
                 tip = 0;
                 Thread.Sleep(20);
-                if (cupQty > 0)
+                if (availableCupQty > 0)
                 {
                     if (person.cashClass.Equals(1))
                     {
@@ -125,46 +125,46 @@ namespace LemonadeStand
                         if (person.tipper.Equals(3))
                         {
                             tip = .15;
-                            cupQty -= 1;
+                            availableCupQty -= 1;
                             income += cupPrice + tip;
                             Console.ForegroundColor = ConsoleColor.Green;
                             Console.Write("Money: " + income.ToString("C2"));
-                            Console.WriteLine(" " + person.customerName + " bought a cup and gave you a " + tip.ToString("C2") + " tip! You have "+ cupQty + " cups of lemonade left.");
+                            Console.WriteLine(" " + person.customerName + " bought a cup and gave you a " + tip.ToString("C2") + " tip! You have "+ availableCupQty + " cups of lemonade left.");
                         }
                         else if (person.tipper.Equals(2))
                         {
                             tip = .05;
-                            cupQty -= 1;
+                            availableCupQty -= 1;
                             income += cupPrice + tip;
                             Console.ForegroundColor = ConsoleColor.Green;
                             Console.Write("Money: " + income.ToString("C2"));
                             Console.ForegroundColor = ConsoleColor.Yellow;
-                            Console.WriteLine(" " +person.customerName + " bought a cup and gave you a " + tip.ToString("C2") + " tip! You have " + cupQty + " cups of lemonade left.");
+                            Console.WriteLine(" " +person.customerName + " bought a cup and gave you a " + tip.ToString("C2") + " tip! You have " + availableCupQty + " cups of lemonade left.");
                         }                    
                         else
                         {
-                            cupQty -= 1;
+                            availableCupQty -= 1;
                             income += cupPrice;
                             Console.ForegroundColor = ConsoleColor.Green;
                             Console.Write("Money: " + income.ToString("C2"));
                             Console.ForegroundColor = ConsoleColor.White;
-                            Console.WriteLine(" " + person.customerName + " bought a cup!" + " You have " + cupQty + " cups of lemonade left.");
+                            Console.WriteLine(" " + person.customerName + " bought a cup!" + " You have " + availableCupQty + " cups of lemonade left.");
                         }
                         if (person.taste.Equals(customRecipe))
                         {
-                            cupQty -= 1;
+                            availableCupQty -= 1;
                             income += cupPrice;
                             Console.ForegroundColor = ConsoleColor.Green;
                             Console.Write("Money: " + income.ToString("C2"));
                             Console.ForegroundColor = ConsoleColor.White;
-                            Console.WriteLine(" " + person.customerName + " bought a 2nd cup because they love that " + person.taste + " flavor!" + " You have " + cupQty + " cups of lemonade left.");
-                            secondCup++;
+                            Console.WriteLine(" " + person.customerName + " bought a 2nd cup because they love that " + person.taste + " flavor!" + " You have " + availableCupQty + " cups of lemonade left.");
+                            secondCupCount++;
                         }
                         actualCount++;
                     }                    
                 }
             }Console.ForegroundColor = ConsoleColor.Magenta;
-            Console.WriteLine("Of the " + potentialCount + " potential customers, you were able to sell to " + actualCount + " people today. You sold a second cup to " + secondCup + " people. \nFeel free to look at what your customers bought today. Press enter.");
+            Console.WriteLine("Of the " + potentialCount + " potential customers, you were able to sell to " + actualCount + " people today. You sold a second cup to " + secondCupCount + " people. \nFeel free to look at what your customers bought today. Press enter.");
             Console.ReadKey();
             return income;
         }

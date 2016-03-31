@@ -14,7 +14,7 @@ namespace LemonadeStand
             Console.ForegroundColor = ConsoleColor.White;
             Console.Write("Player " + player + " | ");
             Console.ForegroundColor = ConsoleColor.Magenta;
-            Console.Write(" Day " + (currentDay + 1) + " | ");
+            Console.Write("Day " + (currentDay + 1) + " | ");
             Console.ForegroundColor = ConsoleColor.Green;
             Console.Write("Money: " + money.ToString("C2"));
             Console.ForegroundColor = ConsoleColor.Yellow;
