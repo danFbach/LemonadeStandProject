@@ -119,6 +119,8 @@ namespace LemonadeStand
                     break;
                 }
                 Console.ReadKey();
+                double endOfSim = (currentMoneyBalance - 20);
+                Console.WriteLine("At the end of the simulation you made a total of " + endOfSim.ToString("C2") + " with and ending balance of " + currentMoneyBalance.ToString("C2") + ".");
             }
             Console.ReadKey();
         }

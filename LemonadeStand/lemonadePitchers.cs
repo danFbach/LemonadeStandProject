@@ -48,7 +48,7 @@ namespace LemonadeStand
                 Console.ForegroundColor = ConsoleColor.White; Console.Write(sugarPer + " cups of sugar and ");
                 Console.ForegroundColor = ConsoleColor.Cyan; Console.Write(sugarPer + " ice cubes ");
                 Console.ForegroundColor = ConsoleColor.White; Console.WriteLine("per pitcher.");
-                return "";
+                return null;
             }
             else if (recipeType.Equals(2))
             {
@@ -89,9 +89,9 @@ namespace LemonadeStand
                     return "watery";
                 }
                 else
-                    return "";
+                    return null;
             }
-            return "";
+            return null;
         }
         public double selectPitchers(double lemons, double sugar, double iceCubes, double playerNum)
         {

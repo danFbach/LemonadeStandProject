@@ -9,7 +9,6 @@ namespace LemonadeStand
     public class weatherSim
     {
         public List<int> dailyWeather = new List<int>();
-        public double weatherRand = 0;
         public List<int> largeScaleWeather(int dayLimit)
         {
             Random forecast = new Random();
@@ -24,30 +23,28 @@ namespace LemonadeStand
         {
             double aCustomer;
             Random customers = new Random();
-            int weatherRand;
-            weatherRand = todaysWeather;
             Console.ForegroundColor = ConsoleColor.Red;
-            if (weatherRand.Equals(1))
+            if (todaysWeather.Equals(1))
             {
                 aCustomer = customers.Next(1, 26);
                 return aCustomer;
             }
-            else if (weatherRand.Equals(2))
+            else if (todaysWeather.Equals(2))
             {
                 aCustomer = customers.Next(5, 31);
                 return aCustomer;
             }
-            else if (weatherRand.Equals(3))
+            else if (todaysWeather.Equals(3))
             {
                 aCustomer = customers.Next(10, 56);
                 return aCustomer;
             }
-            else if (weatherRand.Equals(4))
+            else if (todaysWeather.Equals(4))
             {
                 aCustomer = customers.Next(30, 86);
                 return aCustomer;
             }
-            else if (weatherRand.Equals(5))
+            else if (todaysWeather.Equals(5))
             {
                 aCustomer = customers.Next(40, 101);
                 return aCustomer;
