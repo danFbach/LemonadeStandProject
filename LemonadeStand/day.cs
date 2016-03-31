@@ -40,6 +40,7 @@ namespace LemonadeStand
         }
         public List<customer> makeTodaysCustomers(double customerLimit)
         {
+            potentialCustomers.Clear();
             for (int customerNum = 0; customerNum < customerLimit; customerNum++)
             {
                 potentialCustomers.Add(new customer(setCashClass.Next(1, 9)));

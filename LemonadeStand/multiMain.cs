@@ -9,7 +9,7 @@ namespace LemonadeStand
     public class multiMain
     {
         public List<int> weatherData;
-        public void multiplayerSim(int selection)
+        public void multiplayerSim()
         {
             double p1Money = 20;
             double p1StartMoney;
