@@ -54,7 +54,10 @@ namespace LemonadeStand
             Console.BackgroundColor = ConsoleColor.Black;
             Console.ForegroundColor = ConsoleColor.White;
             double price;
-            Console.WriteLine("What would you like your price per cup to be today?");
+            Console.WriteLine("\nWhat would you like your price per cup to be today? \nMost customers are comfortable paying $0.20 - $0.35, but some will pay more.");
+            Console.ForegroundColor = ConsoleColor.Red;
+            Console.WriteLine("If you charge too little you may get a lot of customers but you won't make enough money.\nBut charge too much and you'll scare them all away.");
+            Console.ForegroundColor = ConsoleColor.White;
             check = double.TryParse(Console.ReadLine(),out price);
             if (check.Equals(false)){ return setPricePerCup(); }
             if (price > 1)
@@ -161,7 +164,7 @@ namespace LemonadeStand
                     }                    
                 }
             }Console.ForegroundColor = ConsoleColor.Magenta;
-            Console.WriteLine("Of the " + potentialCount + " potential customers, you were able to sell to " + actualCount + " people today. You sold a second cup to " + secondCup + " people. \nFeel free to look at what your customers bought today.");
+            Console.WriteLine("Of the " + potentialCount + " potential customers, you were able to sell to " + actualCount + " people today. You sold a second cup to " + secondCup + " people. \nFeel free to look at what your customers bought today. Press enter.");
             Console.ReadKey();
             return income;
         }

@@ -6,24 +6,24 @@ using System.Threading.Tasks;
 
 namespace LemonadeStand
 {
-    public class Game
+    public class singleMain
     {
         player stats = new player();
         public List<int> weatherData;
 
         public void onePlayerGame(int selection)
         {
-            fileWriter save = new fileWriter(0, 0, 0, 0, 0);
+            fileWriter save = new fileWriter();
             buySupplies purchaseSupplies = new buySupplies();
             userInterface display = new userInterface();
             weatherSim simulateWeather = new weatherSim();
             lemonadePitchers pitcherInteraction = new lemonadePitchers();
             day beginDayOfBusiness = new day();
-            double lemons = stats.lemonCount;
-            double iceCubes = stats.iceCount;
+            double lemons = 0;
+            double iceCubes = 0;
             double meltIce = 0;
-            double sugar = stats.sugarCount;
-            double currentMoneyBalance = stats.money;
+            double sugar = 0;
+            double currentMoneyBalance = 20;
             double todaysCupPrice;
             double todaysIncome;
             double packsOfLemonsPurchased;
@@ -37,7 +37,7 @@ namespace LemonadeStand
             int todaysWeatherForecast;
             int daysOfSimulation = 0;
             int currentDay = 0;
-            int consWidth = 90;
+            int consWidth = 100;
             int consHeight = Console.WindowHeight;
             string customRecipe;
             string gameSave = "";
@@ -48,14 +48,13 @@ namespace LemonadeStand
                 //new game
                 daysOfSimulation = beginDayOfBusiness.pickDayLimit();
                 weatherData = simulateWeather.largeScaleWeather(daysOfSimulation);
-                save.saveWeather(weatherData);
             }
             else if (selection.Equals(2))
             {
                 //reload previous game with correct money, inventory and weather conditions
                 fileReader retrieveGameData = new fileReader();
-                weatherData = retrieveGameData.getWeatherData();
                 slotChoice = retrieveGameData.dataDecoder();
+                weatherData = retrieveGameData.getWeatherData(slotChoice);
                 lemons = retrieveGameData.getLemons();
                 sugar = retrieveGameData.getSugar();
                 currentMoneyBalance = retrieveGameData.getTotalMoney();
@@ -114,6 +113,7 @@ namespace LemonadeStand
                 gameSave = save.newSave(gameSave);
                 slotChoice = save.newSlot(gameSave,slotChoice);
                 save.todaysStats(currentMoneyBalance, currentDay, daysOfSimulation, lemons, sugar, slotChoice);
+                save.saveWeather(weatherData, slotChoice);
                 Console.ForegroundColor = ConsoleColor.White;
                 Console.WriteLine("Today, day " + (currentDay) + ", you made " + todaysIncome.ToString("C2") + ", for a profit of " + todaysProfit.ToString("C2") + "\nPress enter to continue to the next day, " + (daysOfSimulation - (currentDay)) + " days remain, including today.");
                 if(currentMoneyBalance < 2)

@@ -12,12 +12,27 @@ namespace LemonadeStand
         string fileName;
         string saveChoice;
         string outputFile = @"C:\Users\Dan DCC\Documents\Visual Studio 2015\Projects\LemonadeStandProject\LemonadeStand\";
-        public fileWriter(double balance, double currentDay, double dayLimit, double lemons, double sugar)
+        public fileWriter()
         {           
         }
-        public void saveWeather(List<int> weatherInput)
+        public void saveWeather(List<int> weatherInput, double slotChoice)
         {
-            using (StreamWriter weather = new StreamWriter(outputFile + "weather.csv"))
+            if (slotChoice.Equals(1))
+            {
+                fileName = "weather1.csv";
+            }
+            else if (slotChoice.Equals(2))
+            {
+                fileName = "weather2.csv";
+            }
+            else if (slotChoice.Equals(3))
+            {
+                fileName = "weather3.csv";
+            }else if (slotChoice.Equals(0))
+            {
+                fileName = "multiplayerWeather.csv";
+            }
+            using (StreamWriter weather = new StreamWriter(outputFile + fileName))
             {
                 foreach (int weatherInt in weatherInput)
                 {
@@ -76,6 +91,23 @@ namespace LemonadeStand
             }
             else
             return gameSlot;
+        }
+        public void multiStats(double currentDay, double dayLimit, double p1Money, double p1Lemons, double p1Sugar, double p2Money, double p2Lemons, double p2Sugar)
+        {
+            fileName = "multiStats.csv";
+            using (StreamWriter multiplayerSave = new StreamWriter(outputFile + fileName))
+            {;
+                string strCurrentDay = currentDay.ToString();
+                string strDayLimit = dayLimit.ToString();
+                string strMoney1 = p1Money.ToString();
+                string strLemons1 = p1Lemons.ToString();
+                string strSugar1 = p1Sugar.ToString();
+                string strMoney2 = p2Money.ToString();
+                string strLemons2 = p2Lemons.ToString();
+                string strSugar2 = p2Sugar.ToString();
+
+                multiplayerSave.WriteLine("{0},{1},{2},{3},{4},{5},{6},{7}{8}", strCurrentDay, strDayLimit,strMoney1, strLemons1, strSugar1, strMoney2,strLemons2,strSugar2, Environment.NewLine);
+            }
         }
     }
 }

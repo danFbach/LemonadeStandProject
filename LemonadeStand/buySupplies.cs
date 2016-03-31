@@ -21,6 +21,8 @@ namespace LemonadeStand
         {
             Console.ForegroundColor = ConsoleColor.White;
             Console.WriteLine("Welcome to the lemonade store, we carry everything the lemonade industry needs.");
+            Console.ForegroundColor = ConsoleColor.Cyan;
+            Console.WriteLine("The default pitcher needs 5 lemons, 4 cups of sugar and 15 ice cubes and makes 8 sellable cups.");
             Console.ForegroundColor = ConsoleColor.Red;
             double ingredientPurchaseQty = 0;
             string supplyChoice;
@@ -49,7 +51,7 @@ namespace LemonadeStand
             supplyChoice = Console.ReadLine();
             supplyChoice = supplyChoice.ToLower();
             if (supplyChoice.Equals("y"))
-            {                
+            {
                 Console.ForegroundColor = ConsoleColor.Green;
                 Console.Write(itemPackPrice.ToString("C2"));
 
@@ -63,7 +65,7 @@ namespace LemonadeStand
                     Console.ForegroundColor = ConsoleColor.White;
                     fillIn = " ";
                 }
-                else if(itemType.Equals("ice cubes"))
+                else if (itemType.Equals("ice cubes"))
                 {
                     Console.ForegroundColor = ConsoleColor.Cyan;
                     fillIn = " bags of ";
@@ -73,13 +75,16 @@ namespace LemonadeStand
                 Console.ForegroundColor = ConsoleColor.Green; Console.WriteLine(money.ToString("C2"));
                 Console.ForegroundColor = ConsoleColor.Red; Console.WriteLine("Please enter how many packs you would like.");
                 bool check = double.TryParse(Console.ReadLine(), out ingredientPurchaseQty);
-                if(check.Equals(false)) { return purchaseSupplies(itemQty, money, itemType); }  
-                if((money - (ingredientPurchaseQty*itemPackPrice)) < 0)
+                if (check.Equals(false)) { return purchaseSupplies(itemQty, money, itemType); }
+                if ((ingredientPurchaseQty * itemPackPrice) > money)
                 {
                     Console.WriteLine("You do not have enough money to buy " + ingredientPurchaseQty + fillIn + itemType + ".");
                     return purchaseSupplies(itemQty, money, itemType);
-                }                  
-            }return ingredientPurchaseQty;
+                }
+                else { return ingredientPurchaseQty; }
+            }
+            else if (supplyChoice.Equals("n")) { return ingredientPurchaseQty; }
+            else return purchaseSupplies(itemQty, money, itemType);
         }
         public double ingredientTotal(double numberPurchased, double productCount, string type)
         {

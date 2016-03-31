@@ -10,7 +10,7 @@ namespace LemonadeStand
     {
         public void infoBar(double lemonCount, double sugarCount, double iceCount, double money, double todayWeather, double currentDay, double player)
         {
-            Console.Clear();
+            if (player.Equals(1)) { Console.Clear(); }            
             Console.ForegroundColor = ConsoleColor.White;
             Console.Write("Player " + player + " | ");
             Console.ForegroundColor = ConsoleColor.Magenta;
@@ -51,36 +51,38 @@ namespace LemonadeStand
             else if (todayWeather.Equals(5))
             {
                 Console.ForegroundColor = ConsoleColor.Yellow;
-                Console.WriteLine(@"90 - Clear Skies!");
+                Console.WriteLine(@" | 90 - Clear Skies!");
             }
         }
-        public void playerStatComparison(double p1Profit, double p1Income, double p1Money, double p2Profit, double p2Income, double p2Money)
+        public void playerStatComparison(double profit, double income, double money, double player)
         {
             Console.ForegroundColor = ConsoleColor.White;
-            Console.Write("Player 1 made ");
+            Console.Write("Player " + player +" made ");
             Console.ForegroundColor = ConsoleColor.Green;
-            Console.Write(p1Income.ToString("C2"));
+            Console.Write(income.ToString("C2"));
             Console.ForegroundColor = ConsoleColor.White;
             Console.Write(" for a profit of ");
             Console.ForegroundColor = ConsoleColor.Green;
-            Console.Write(p1Profit.ToString("C2"));
+            Console.Write(profit.ToString("C2"));
             Console.ForegroundColor = ConsoleColor.White;
-            Console.Write("Bringing their total money to ");
+            Console.Write(" Bringing their total money to ");
             Console.ForegroundColor = ConsoleColor.Green;
-            Console.WriteLine(p1Money.ToString("C2"));
-            Console.ForegroundColor = ConsoleColor.White;
-            Console.Write("Player 2 made ");
-            Console.ForegroundColor = ConsoleColor.Green;
-            Console.Write(p2Income.ToString("C2"));
-            Console.ForegroundColor = ConsoleColor.White;
-            Console.Write(" for a profit of ");
-            Console.ForegroundColor = ConsoleColor.Green;
-            Console.Write(p2Profit.ToString("C2"));
-            Console.ForegroundColor = ConsoleColor.White;
-            Console.Write("Bringing their total money to ");
-            Console.ForegroundColor = ConsoleColor.Green;
-            Console.WriteLine(p2Money.ToString("C2"));
+            Console.WriteLine(money.ToString("C2"));
+        }
+        public void playerCheck(double p1Income, double p1Money, double p2Income, double p2Money)
+        {
+            if (p1Income > p2Income) { Console.WriteLine("Player 1 had the most income today."); }
+            else if (p2Income > p1Income) { Console.WriteLine("Player 2 had the most income today."); }
+
+            if(p1Money > p2Money) { Console.WriteLine("Player 1 has the most money overall."); }
+            else if (p2Money > p1Money) { Console.WriteLine("Player 2 has the most money overall."); }
+
             Console.ReadKey();
+        }
+        public void displayTurn(double player)
+        {
+            Console.ForegroundColor = ConsoleColor.Yellow;
+            Console.WriteLine("Player " + player + "'s turn.");
         }
     }
 }

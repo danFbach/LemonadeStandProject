@@ -20,10 +20,26 @@ namespace LemonadeStand
         public string strDayLimit;
         public string fileName;
         public string filepath = @"c:\users\dan dcc\documents\visual studio 2015\projects\lemonadestandproject\lemonadestand\";
-        public List<int> getWeatherData()
+        public List<int> getWeatherData(double slotChoice)
         {
+            if (slotChoice.Equals(1))
+            {
+                fileName = "weather1.csv";
+            }
+            else if (slotChoice.Equals(2))
+            {
+                fileName = "weather2.csv";
+            }
+            else if (slotChoice.Equals(3))
+            {
+                fileName = "weather3.csv";
+            }
+            else if (slotChoice.Equals(0))
+            {
+                fileName = "multiplayerWeather.csv";
+            }
             List<int> weatherRetrieval = new List<int>();
-            using (StreamReader loadWeather = new StreamReader(filepath + "weather.csv"))
+            using (StreamReader loadWeather = new StreamReader(filepath + fileName))
             {
                 weatherData = loadWeather.ReadLine();
             }
@@ -103,5 +119,73 @@ namespace LemonadeStand
             int dayLimit = Convert.ToInt16(strDayLimit);
             return dayLimit;
         }
-    }
+
+        string strDayMulti;
+        string strDayLimitMulti;
+        string strMoney1;
+        string strLemons1;
+        string strSugar1;
+        string strMoney2;
+        string strLemons2;
+        string strSugar2;
+        public void multiplayerDecoder()
+        {
+            string fileName = "multiStats.csv";
+            using (StreamReader loadGame = new StreamReader(filepath + fileName))
+            {
+                gameData = loadGame.ReadLine();
+            }
+            char delimiter = ',';
+            string[] gameData2 = gameData.Split(delimiter);
+            strDayMulti = gameData2[0];
+            strDayLimitMulti = gameData2[1];
+            strMoney1 = gameData2[2];
+            strLemons1 = gameData2[3];
+            strSugar1 = gameData2[4];
+            strMoney2 = gameData2[5];
+            strLemons2 = gameData2[6];
+            strSugar2 = gameData2[7];
+        }
+        public int getDayMulti()
+        {
+            int multiDay = Convert.ToInt16(strDayMulti);
+            return multiDay;
+        }
+        public int getDayLimitMulti()
+        {
+            int multiDayLimit = Convert.ToInt16(strDayLimitMulti);
+            return multiDayLimit;
+        }
+        public double getP1Money()
+        {
+            double p1Money = Convert.ToDouble(strMoney1);
+            return p1Money;
+        }
+        public double getp1Lemons()
+        {
+            double p1Lemons = Convert.ToDouble(strLemons1);
+            return p1Lemons;
+        }
+        public double getP1Sugar()
+        {
+            double p1Sugar = Convert.ToDouble(strSugar1);
+            return p1Sugar;
+        }
+        public double getP2Money()
+        {
+            double p2Money = Convert.ToDouble(strMoney2);
+            return p2Money;
+        }
+        public double getp2Lemons()
+        {
+            double p2Lemons = Convert.ToDouble(strLemons2);
+            return p2Lemons;
+        }
+        public double getP2Sugar()
+        {
+            double p2Sugar = Convert.ToDouble(strSugar2);
+            return p2Sugar;
+        }
+
+    }    
 }
