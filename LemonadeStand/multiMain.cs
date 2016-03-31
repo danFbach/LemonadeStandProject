@@ -11,6 +11,7 @@ namespace LemonadeStand
         public List<int> weatherData;
         public void multiplayerSim(double gameSelection)
         {
+            //p1 variables
             double p1Money = 20;
             double p1StartMoney;
             double p1Lemons = 0;
@@ -25,7 +26,7 @@ namespace LemonadeStand
             double p1PitcherQty;
             double playerNumber1 = 1;
             string p1Recipe = "";
-
+            //p2 variables
             double p2Money = 20;
             double p2StartMoney;
             double p2Lemons = 0;
@@ -40,7 +41,7 @@ namespace LemonadeStand
             double p2PitcherQty;
             double playerNumber2 = 2;
             string p2Recipe = "";
-
+            //general variables
             double potentialCustomers;
             double meltIce = 0;
             double slotChoice = 0;
@@ -50,7 +51,6 @@ namespace LemonadeStand
             int consWidth = 110;
             int consHeight = Console.WindowHeight;
             Console.SetWindowSize(consWidth, consHeight);
-
             weatherSim setWeather = new weatherSim();
             userInterface display = new userInterface();
             buySupplies purchaseSupplies = new buySupplies();
@@ -58,8 +58,6 @@ namespace LemonadeStand
             day beginDayOfBusiness = new day();
             fileWriter saveGame = new fileWriter();
             fileReader retrieveGame = new fileReader();
-
-
             if (gameSelection.Equals(1))
             {
                 //generate new game data
@@ -81,7 +79,6 @@ namespace LemonadeStand
                 p2Lemons = retrieveGame.getp2Lemons();
                 p2Sugar = retrieveGame.getP2Sugar();
             }
-
             for (; currentDay < dayLimit;)
             {
                 todaysWeather = weatherData[currentDay];
@@ -177,7 +174,7 @@ namespace LemonadeStand
                 p2Money += p2Income;
                 p2Profit = p2Money - p2StartMoney;
                 p2Ice = meltIce;
-
+                //wrap it up
                 currentDay += 1;
                 display.infoBar(p1Lemons, p1Sugar, p1Ice, p1Money, todaysWeather, currentDay, playerNumber1);
                 display.playerStatComparison(p1Profit, p1Income, p1Money, playerNumber1);
@@ -187,14 +184,7 @@ namespace LemonadeStand
                 Console.WriteLine();
                 display.playerCheck(p1Income,p1Money,p2Income,p2Money);
                 saveGame.multiStats(currentDay, dayLimit, p1Money, p1Lemons, p1Sugar, p2Money, p2Lemons, p2Sugar);
-
-
             }
-
-
-
-
-
         }
     }
 }

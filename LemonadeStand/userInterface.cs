@@ -23,8 +23,6 @@ namespace LemonadeStand
             Console.Write(" Sugar: " + sugarCount);
             Console.ForegroundColor = ConsoleColor.Cyan;
             Console.Write(" Icecubes: " + iceCount);
-
-
             if (todayWeather.Equals(1))
             {
                 Console.ForegroundColor = ConsoleColor.Blue;

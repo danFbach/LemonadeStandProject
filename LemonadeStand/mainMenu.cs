@@ -10,7 +10,7 @@ namespace LemonadeStand
     {
         int gameSelect;
         int gameType;
-        bool check;
+        bool check = true;
         multiMain startGame = new multiMain();
         singleMain startSinglePlayer = new singleMain();
         public void gameSelection()

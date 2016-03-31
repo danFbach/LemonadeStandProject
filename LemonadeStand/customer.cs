@@ -17,16 +17,12 @@ namespace LemonadeStand
         public int tipper;
         public customer(int cash)
         {
-
             tasteClass = tipping.Next(1, 8);
             taste = tasteTest(tasteClass);
             Thread.Sleep(5);
-
             cashClass = cash;
-
             tipper = tipping.Next(1, 6);
             Thread.Sleep(5);
-
             int randName = name.Next(1, 11);
             if (randName.Equals(1))
             {

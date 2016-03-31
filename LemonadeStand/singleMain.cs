@@ -8,9 +8,7 @@ namespace LemonadeStand
 {
     public class singleMain
     {
-        player stats = new player();
         public List<int> weatherData;
-
         public void onePlayerGame(int selection)
         {
             fileWriter save = new fileWriter();
@@ -41,7 +39,6 @@ namespace LemonadeStand
             int consHeight = Console.WindowHeight;
             string customRecipe;
             string gameSave = "";
-
             Console.SetWindowSize(consWidth, consHeight);
             if (selection.Equals(1))
             {
@@ -66,7 +63,6 @@ namespace LemonadeStand
                 Console.WriteLine("\nThe previous game has loaded. It is day " + (currentDay + 1) + " and there are " + (daysOfSimulation - currentDay) + " days left, including today. \nPress enter to continue.");
                 Console.ReadKey();
             }
-
             for (; currentDay < daysOfSimulation;)
             {
                 startOfDayMoney = currentMoneyBalance;

@@ -16,7 +16,8 @@ namespace LemonadeStand
         double icePackPrice = 1.75;
         double itemPackPrice;
         double itemPackQty;
-        string fillIn;        
+        string fillIn;
+        bool check = true;
         public double purchaseSupplies(double itemQty, double money, string itemType)
         {
             Console.ForegroundColor = ConsoleColor.White;
@@ -54,7 +55,6 @@ namespace LemonadeStand
             {
                 Console.ForegroundColor = ConsoleColor.Green;
                 Console.Write(itemPackPrice.ToString("C2"));
-
                 if (itemType.Equals("lemons"))
                 {
                     Console.ForegroundColor = ConsoleColor.Yellow;
@@ -74,7 +74,7 @@ namespace LemonadeStand
                 Console.ForegroundColor = ConsoleColor.Red; Console.Write("! You currently have ");
                 Console.ForegroundColor = ConsoleColor.Green; Console.WriteLine(money.ToString("C2"));
                 Console.ForegroundColor = ConsoleColor.Red; Console.WriteLine("Please enter how many packs you would like.");
-                bool check = double.TryParse(Console.ReadLine(), out ingredientPurchaseQty);
+                check = double.TryParse(Console.ReadLine(), out ingredientPurchaseQty);
                 if (check.Equals(false)) { return purchaseSupplies(itemQty, money, itemType); }
                 if ((ingredientPurchaseQty * itemPackPrice) > money)
                 {

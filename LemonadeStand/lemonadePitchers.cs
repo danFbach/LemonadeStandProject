@@ -18,14 +18,14 @@ namespace LemonadeStand
         double sugarPer;
         double icePer;
         double recipeType;
-        bool errorCheck;
+        bool check = true;
         public string makeARecipe(double playerNum)
         {
             Console.ForegroundColor = ConsoleColor.Red;
             Console.WriteLine("It's time to make the lemonade.");
             Console.WriteLine("Would you like to... \n(1)use the default recipe \n(2)make your own?");
-            errorCheck = double.TryParse(Console.ReadLine(), out recipeType);
-            if (errorCheck.Equals(false)) { makeARecipe(playerNum); }
+            check = double.TryParse(Console.ReadLine(), out recipeType);
+            if (check.Equals(false)) { makeARecipe(playerNum); }
             if (recipeType.Equals(1))
             {
                 lemonsPer = 5;
@@ -105,12 +105,11 @@ namespace LemonadeStand
             Console.ForegroundColor = ConsoleColor.Red;
             double numberOfPitchers = 0;
             Console.WriteLine("How many pitchers would you like to make today?");
-            errorCheck = double.TryParse(Console.ReadLine(), out numberOfPitchers);
-            if (errorCheck.Equals(false)) { return selectPitchers(lemons, sugar, iceCubes,playerNum); }
+            check = double.TryParse(Console.ReadLine(), out numberOfPitchers);
+            if (check.Equals(false)) { return selectPitchers(lemons, sugar, iceCubes,playerNum); }
             double lemonsUsed = numberOfPitchers * lemonsPer;
             double sugarUsed = numberOfPitchers * sugarPer;
             double iceUsed = numberOfPitchers * icePer;
-
             Console.BackgroundColor = ConsoleColor.Red;
             Console.ForegroundColor = ConsoleColor.White;
             if (lemons - lemonsUsed < 0)

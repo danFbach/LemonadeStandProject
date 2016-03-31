@@ -6,7 +6,6 @@ using System.Threading;
 
 namespace LemonadeStand
 {
-
     public class day
     {
         public double income = 0;
@@ -14,7 +13,7 @@ namespace LemonadeStand
         public Random setCashClass = new Random();
         public Random buyOrNot = new Random();
         public double buyChance;
-        public bool check;
+        public bool check = true;
         int dayLimit;
         public int pickDayLimit()
         {
@@ -49,8 +48,7 @@ namespace LemonadeStand
                 Console.Write(".");
             }
             return potentialCustomers;
-        }
-        
+        }        
         public double setPricePerCup()
         {
             Console.BackgroundColor = ConsoleColor.Black;
@@ -85,8 +83,7 @@ namespace LemonadeStand
             double actualCount = 0;
             double secondCup = 0;
             foreach (customer person in potentialCustomers)
-            {
-                
+            {                
                 tip = 0;
                 Thread.Sleep(20);
                 if (cupQty > 0)

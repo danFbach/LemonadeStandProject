@@ -52,8 +52,7 @@ namespace LemonadeStand
                 weatherRetrieval.Add(dayWeather);
             }
             return weatherRetrieval;
-        }
-        
+        }        
         public double dataDecoder()
         {
             Console.ForegroundColor = ConsoleColor.DarkGray;
@@ -71,7 +70,6 @@ namespace LemonadeStand
             {
                 fileName = "gamestats3.csv";
             }
-
                 using (StreamReader loadGame = new StreamReader(filepath + fileName))
             {
                 gameData = loadGame.ReadLine();
@@ -119,7 +117,6 @@ namespace LemonadeStand
             int dayLimit = Convert.ToInt16(strDayLimit);
             return dayLimit;
         }
-
         string strDayMulti;
         string strDayLimitMulti;
         string strMoney1;
@@ -186,6 +183,5 @@ namespace LemonadeStand
             double p2Sugar = Convert.ToDouble(strSugar2);
             return p2Sugar;
         }
-
     }    
 }
