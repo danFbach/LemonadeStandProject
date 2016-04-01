@@ -111,7 +111,7 @@ namespace LemonadeStand
                 save.todaysStats(currentMoneyBalance, currentDay, daysOfSimulation, lemons, sugar, slotChoice);
                 save.saveWeather(weatherData, slotChoice);
                 Console.ForegroundColor = ConsoleColor.White;
-                Console.WriteLine("Today, day " + (currentDay) + ", you made " + todaysIncome.ToString("C2") + ", for a profit of " + todaysProfit.ToString("C2") + "\nPress enter to continue to the next day, " + (daysOfSimulation - (currentDay)) + " days remain, including today.");
+                Console.WriteLine("Today, day " + (currentDay) + ", you made " + todaysIncome.ToString("C2") + ", for a profit of " + todaysProfit.ToString("C2") + "\nPress enter to continue. " + (daysOfSimulation - (currentDay)) + " days remain.");
                 if(currentMoneyBalance < 2)
                 {
                     Console.ForegroundColor = ConsoleColor.Red;

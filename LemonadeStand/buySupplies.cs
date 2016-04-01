@@ -75,7 +75,7 @@ namespace LemonadeStand
                 Console.ForegroundColor = ConsoleColor.Green; Console.WriteLine(money.ToString("C2"));
                 Console.ForegroundColor = ConsoleColor.Red; Console.WriteLine("Please enter how many packs you would like.");
                 check = double.TryParse(Console.ReadLine(), out ingredientPurchaseQty);
-                if (check.Equals(false)) { return purchaseSupplies(itemQty, money, itemType); }
+                if (check.Equals(false)) { Console.WriteLine("Invalid entry."); return purchaseSupplies(itemQty, money, itemType); }
                 if ((ingredientPurchaseQty * itemPackPrice) > money)
                 {
                     Console.WriteLine("You do not have enough money to buy " + ingredientPurchaseQty + fillIn + itemType + ".");
@@ -84,7 +84,7 @@ namespace LemonadeStand
                 else { return ingredientPurchaseQty; }
             }
             else if (supplyChoice.Equals("n")) { return ingredientPurchaseQty; }
-            else return purchaseSupplies(itemQty, money, itemType);
+            else { Console.WriteLine("Invalid entry."); return purchaseSupplies(itemQty, money, itemType); }
         }
         public double ingredientTotal(double numberPurchased, double productCount, string type)
         {

@@ -19,7 +19,8 @@ namespace LemonadeStand
         {
             Console.ForegroundColor = ConsoleColor.White;
             Console.WriteLine("How many weeks will we run the simulation, 1, 2 or 3?");
-            dayLimit = int.Parse(Console.ReadLine());
+            check = int.TryParse(Console.ReadLine(), out dayLimit);
+            if (check.Equals(false)) { Console.WriteLine("Invalid entry."); return pickDayLimit(); }
             switch (dayLimit)
             {
                 case (1):
@@ -59,7 +60,7 @@ namespace LemonadeStand
             Console.WriteLine("If you charge too little you may get a lot of customers but you won't make enough money.\nBut charge too much and you'll scare them all away.");
             Console.ForegroundColor = ConsoleColor.White;
             check = double.TryParse(Console.ReadLine(),out price);
-            if (check.Equals(false)){ return setPricePerCup(); }
+            if (check.Equals(false)) { Console.WriteLine("Invalid entry."); return setPricePerCup(); }
             if (price > 1)
             {
                 price = price / 100;
