@@ -80,6 +80,7 @@ namespace LemonadeStand
             double income = 0;
             double cupPriceLimit = 0;
             double tip;
+            double tipCount = 0;
             double potentialCount = potentialCustomers.Count;
             double actualCount = 0;
             double secondCupCount = 0;
@@ -131,6 +132,7 @@ namespace LemonadeStand
                             Console.ForegroundColor = ConsoleColor.Green;
                             Console.Write("Money: " + income.ToString("C2"));
                             Console.WriteLine(" " + person.customerName + " bought a cup and gave you a " + tip.ToString("C2") + " tip! You have "+ availableCupQty + " cups of lemonade left.");
+                            tipCount++;
                         }
                         else if (person.tipper.Equals(2))
                         {
@@ -141,6 +143,7 @@ namespace LemonadeStand
                             Console.Write("Money: " + income.ToString("C2"));
                             Console.ForegroundColor = ConsoleColor.Yellow;
                             Console.WriteLine(" " +person.customerName + " bought a cup and gave you a " + tip.ToString("C2") + " tip! You have " + availableCupQty + " cups of lemonade left.");
+                            tipCount++;
                         }                    
                         else
                         {
@@ -165,7 +168,7 @@ namespace LemonadeStand
                     }                    
                 }
             }Console.ForegroundColor = ConsoleColor.Magenta;
-            Console.WriteLine("Of the " + potentialCount + " potential customers, you were able to sell to " + actualCount + " people today. You sold a second cup to " + secondCupCount + " people. \nFeel free to look at what your customers bought today. Press enter.");
+            Console.WriteLine("Of the " + potentialCount + " potential customers, you were able to sell to " + actualCount + " people today. You sold a second cup to " + secondCupCount + " people. \n" + "You had " + tipCount + " customers tip you today too!" + "\nFeel free to look at what your customers bought today. Press enter.");
             Console.ReadKey();
             return income;
         }

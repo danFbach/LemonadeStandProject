@@ -67,27 +67,26 @@ namespace LemonadeStand
                     p2LemonsPer = lemonsPer;
                     p2SugarPer = sugarPer;
                     p2IcePer = icePer;
-
-
-                    if (lemonsPer > 5)
-                    {
-                        return "sour";
-                    }
-                    else if (sugarPer > 4)
-                    {
-                        return "sweet";
-                    }
-                    else if (sugarPer < 4)
-                    {
-                        return "dull";
-                    }
-                    else if (icePer > 15)
-                    {
-                        return "watery";
-                    }
-                    else
-                        return null;
                 }
+
+                if (lemonsPer > 5)
+                {
+                    return "sour";
+                }
+                else if (sugarPer > 4)
+                {
+                    return "sweet";
+                }
+                else if (sugarPer < 4)
+                {
+                    return "dull";
+                }
+                else if (icePer > 15)
+                {
+                    return "watery";
+                }
+                else { return null; }
+                
             } return null;
         }
         public double customLemons()

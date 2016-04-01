@@ -151,19 +151,22 @@ namespace LemonadeStand
                 p2Lemons = pitcherInteraction.calcIngredients(p2Lemons, p2PitcherQty, "lemons", playerNumber2);
                 p2Sugar = pitcherInteraction.calcIngredients(p2Sugar, p2PitcherQty, "sugar", playerNumber2);
                 p2Ice = pitcherInteraction.calcIngredients(p2Ice, p2PitcherQty, "ice", playerNumber2);
-                //make customers
-                beginDayOfBusiness.makeTodaysCustomers(potentialCustomers);
+                
                 //price p1
                 display.infoBar(p1Lemons, p1Sugar, p1Ice, p1Money, todaysWeather, currentDay, playerNumber1);
                 display.infoBar(p2Lemons, p2Sugar, p2Ice, p2Money, todaysWeather, currentDay, playerNumber2);
                 display.displayTurn(playerNumber1);
                 p1CupPrice = beginDayOfBusiness.setPricePerCup();
+                //make customers
+                beginDayOfBusiness.makeTodaysCustomers(potentialCustomers);
+                //p1 turn
                 p1Income = beginDayOfBusiness.daySim(p1PitcherQty, p1CupPrice, p1Recipe);
                 //price p2
                 display.infoBar(p1Lemons, p1Sugar, p1Ice, p1Money, todaysWeather, currentDay, playerNumber1);
                 display.infoBar(p2Lemons, p2Sugar, p2Ice, p2Money, todaysWeather, currentDay, playerNumber2);
                 display.displayTurn(playerNumber2);
                 p2CupPrice = beginDayOfBusiness.setPricePerCup();
+                //p2 turn
                 p2Income = beginDayOfBusiness.daySim(p2PitcherQty, p2CupPrice, p2Recipe);
                 //a wee bit of math
                 p1Profit = 0;
